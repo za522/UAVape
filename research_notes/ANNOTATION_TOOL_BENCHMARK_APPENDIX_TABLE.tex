@@ -1,0 +1,157 @@
+% Appendix table for the annotation-tool audit.
+% Required packages in the main Overleaf preamble:
+% \usepackage{pdflscape}
+% \usepackage{longtable}
+% \usepackage{booktabs}
+% \usepackage{array}
+
+\newcolumntype{Y}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\begin{landscape}
+\scriptsize
+\setlength{\tabcolsep}{2.4pt}
+\renewcommand{\arraystretch}{1.18}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+
+\begin{longtable}{@{}Y{0.09\linewidth}Y{0.13\linewidth}Y{0.087\linewidth}Y{0.087\linewidth}Y{0.087\linewidth}Y{0.087\linewidth}Y{0.087\linewidth}Y{0.087\linewidth}Y{0.087\linewidth}Y{0.087\linewidth}@{}}
+\caption{Benchmark of industry-standard annotation tools against UAVape Dataset Construction Engine requirements.}
+\label{tab:appendix_annotation_tool_benchmark}\\
+\toprule
+\textbf{Metric} &
+\textbf{Metric justification} &
+\textbf{CVAT} &
+\textbf{Label Studio} &
+\textbf{Roboflow Annotate} &
+\textbf{Ultralytics Platform} &
+\textbf{Labelbox Annotate} &
+\textbf{Encord} &
+\textbf{V7 Darwin} &
+\textbf{Supervisely} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Metric} &
+\textbf{Metric justification} &
+\textbf{CVAT} &
+\textbf{Label Studio} &
+\textbf{Roboflow Annotate} &
+\textbf{Ultralytics Platform} &
+\textbf{Labelbox Annotate} &
+\textbf{Encord} &
+\textbf{V7 Darwin} &
+\textbf{Supervisely} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{10}{r}{\textit{Continued on next page}}\\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+Target user / audience &
+Clarifies whether the tool is designed for researchers, small teams, enterprise labelling teams or full ML operations. &
+Research and engineering teams needing open-source or self-hosted vision annotation. &
+Flexible open-source labelling for many data types, including CV, NLP, audio and multimodal AI evaluation. &
+Computer-vision developers wanting dataset annotation, versioning, training and deployment in one web workflow. &
+YOLO-focused teams wanting upload, annotate, train, export and deploy inside the Ultralytics ecosystem. &
+Enterprise teams managing large-scale annotation workforces, vendors and review pipelines. &
+Enterprise AI teams needing multimodal labelling, human-in-the-loop workflows and production data operations. &
+Professional annotation teams needing image, video or medical annotation workflows and model-assisted labelling. &
+Enterprise/computer-vision teams needing broad modality support, custom apps, AI tools and on-prem options. \\
+
+Deployment / access model &
+Determines whether a tool fits lightweight research, self-hosted privacy needs or paid enterprise deployment. &
+Open-source self-hosted, cloud CVAT Online and enterprise options. &
+Open-source installable platform plus enterprise HumanSignal version. &
+SaaS-first web platform with team workspaces and paid credits/features. &
+SaaS platform with account regions, cloud training and hosted deployment. &
+SaaS enterprise platform with external workforces and data-engine workflows. &
+Enterprise SaaS and cloud-integrated platform; emphasises zero data migration and data staying in the user's cloud. &
+Hosted Darwin platform with CLI, SDK, external storage and workflow integrations. &
+SaaS, cloud-hosted or self-hosted/on-prem enterprise deployment. \\
+
+Annotation types &
+Measures whether the tool supports the visual labels needed for object detection and future segmentation/pose expansion. &
+Boxes, polygons, masks/segmentation, keypoints, skeletons, tracking and 3D point-cloud tasks. &
+Boxes, polygons, circular regions, keypoints, object tracking and semantic segmentation. &
+Bounding boxes, polygons, masks, keypoints and classification workflows depending on project type. &
+YOLO task coverage: detect boxes, segment polygons, semantic masks, pose keypoints, oriented boxes and classification. &
+Configurable editors across image, video, text, documents, geospatial, audio and LLM tasks. &
+Image, video, audio, text, DICOM, HTML, LiDAR/geospatial and multimodal layouts. &
+Bounding boxes, polygons, masks, brush tools, video, DICOM/NIfTI and specialist medical views. &
+Images, video, 3D/LiDAR, DICOM, polygons, skeletons, 3D lasso, segmentation and tracking. \\
+
+AI-assisted labelling &
+Important because small-object annotation is labour intensive and benefits from pre-labels, SAM-style assistance or model-in-the-loop workflows. &
+Supports automated annotation using pretrained or custom models via API/SDK; current platform highlights SAM support. &
+Supports ML backends and model pre-labelling, but configuration requires more setup. &
+Strong built-in AI labelling: Label Assist, Smart Polygon/SAM, Box Prompting and Grounding-DINO-style Auto Label. &
+Strong YOLO/SAM smart annotation, including pretrained or own fine-tuned YOLO models. &
+Model-assisted labelling via Foundry/LLM configuration and imported model predictions as pre-labels. &
+Strong AI-assisted human-in-the-loop workflows, SAM 2 support and custom model integration. &
+Strong Auto-Annotate, Auto-Track, SAM and trained-model assisted labelling. &
+Strong built-in smart tools, SAM2/ClickSEG-style assistance, built-in models and custom model integration. \\
+
+Dataset/versioning/export fit &
+Captures whether labels can move cleanly into YOLO training and whether dataset versions are reproducible. &
+Strong export support including YOLO, COCO, Pascal VOC, KITTI, Cityscapes and 20+ formats. &
+Strong API/SDK flexibility, but export/versioning depends on project configuration. &
+Very strong for CV datasets: upload, manage, version, analyse and download datasets in training formats. &
+Native YOLO dataset structure and numbered NDJSON snapshots for reproducible training. &
+Strong data import/export, schemas, catalogue and API workflows for enterprise pipelines. &
+Strong data lineage, cloud storage, APIs and multimodal data management. &
+Strong imports/exports through Darwin CLI/SDK and documented CV export formats. &
+Strong format coverage, dataset curation, cloud/local storage and API/SDK automation. \\
+
+Collaboration and workflow &
+Indicates whether the tool can support multiple annotators, assignment and review rather than single-user drawing only. &
+Projects, tasks, jobs, roles, audit trails, progress tracking and team workflows. &
+Supports collaborative labelling, but workflow depth is stronger in enterprise deployments. &
+Jobs, assignment, instructions, comments, review mode and approval/rejection. &
+Team/platform workflow exists, but its annotation workflow is mainly tied to the YOLO model lifecycle. &
+Very strong: internal teams, vendors, external labelling services and workforce monitoring. &
+Very strong: role-based workflows, task assignment, custom stages and team analytics. &
+Strong: workflow stages including annotate, review, consensus, logic, archive and sampling. &
+Strong: custom workflows, labelling jobs, reviews, user roles and monitoring. \\
+
+Quality assurance / review &
+Essential for bounding-box quality, especially where tiny objects can be missed or loosely labelled. &
+Multi-stage validation, configurable thresholds, reports, confusion matrix and audit trails. &
+Supports review and model-assisted correction, but QA process requires project-specific setup. &
+Review mode with approve/reject, comments, label issues and annotation insights. &
+Useful class sidebar/counts and visual controls, but less mature as a full QA workforce platform. &
+Very strong: workflows, issues/comments, benchmarks, consensus and performance dashboards. &
+Very strong: custom review workflows, performance analytics and human-in-the-loop quality controls. &
+Strong: review, consensus, workflow automation, comments and external validation via webhooks. &
+Strong: review tools, QA statistics, heatmaps, class co-occurrence and balance analytics. \\
+
+Fit for UAVape / small-object workflow &
+Evaluates suitability for high-resolution litter imagery, small bounding boxes, repeated QA and export to detector training. &
+High fit: open, self-hostable, robust CV annotation and YOLO export. May need custom UI for DCE-specific metadata. &
+Medium-high fit: highly flexible and open, but more generic and less CV-specialised out of the box. &
+High fit: fast web workflow, AI labelling, dataset analytics and YOLO-friendly export. Less ideal if full custom DCE control is required. &
+High fit for YOLO experiments and model iteration; lower fit as a general-purpose annotation research environment. &
+Medium fit for UAVape research; strong enterprise QA but heavier than needed for a bespoke academic DCE. &
+Medium-high fit: powerful for enterprise human-in-the-loop and multimodal data, but likely heavier and more commercial than needed. &
+Medium-high fit: strong auto-annotation and review workflow, but more platform-dependent than a custom DCE. &
+High fit for advanced CV workflows, model assistance and custom apps; may be over-complex for a lightweight dissertation prototype. \\
+
+Main limitation &
+Identifies why an off-the-shelf tool alone may not satisfy the UAVape DCE requirements. &
+Powerful but generic; DCE-specific candidate review, scrape/synthetic provenance and metadata logic would require customisation. &
+Very flexible but configuration-heavy; not optimised only for YOLO-style small-object CV out of the box. &
+Productive but SaaS/platform-dependent; custom metadata and research workflow control may be constrained. &
+Excellent YOLO loop but narrow ecosystem focus and less suited to broader bespoke curation logic. &
+Enterprise-first cost/complexity; may exceed the needs of a small, custom academic dataset engine. &
+Enterprise-first; strong but potentially heavyweight for a dissertation-scale bespoke pipeline. &
+Strong annotation platform but less transparent/custom than building a domain-specific DCE. &
+Broad and powerful, but complex; custom DCE may be simpler for targeted vape-litter workflow. \\
+
+\end{longtable}
+\end{landscape}
+
+\normalsize

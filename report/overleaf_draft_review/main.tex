@@ -1,0 +1,53 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{booktabs}
+
+\input{setup}
+
+\begin{document}
+
+% ------------------------------------------------------------
+% Front matter
+% ------------------------------------------------------------
+\input{Sections/0_cover_page}
+\clearpage
+\input{Sections/0_abstract}
+
+\clearpage
+\pagenumbering{roman}
+\tableofcontents
+
+\clearpage
+\pagenumbering{arabic}
+\pagestyle{fancy}
+
+% ------------------------------------------------------------
+% Main body
+% ------------------------------------------------------------
+\input{Sections/1_introduction}
+\input{Sections/2_background_literature_review}
+\input{Sections/3_further_investigation}
+\input{Sections/4_design_specification}
+\input{Sections/5_methodology}
+\input{Sections/6_evaluation_results}
+\input{Sections/7_discussion}
+\input{Sections/8_conclusion}
+\input{Sections/9_project_management_reflection}
+
+\clearpage
+\phantomsection
+\label{lastbodypage}
+
+% ------------------------------------------------------------
+% References
+% ------------------------------------------------------------
+\clearpage
+\pagestyle{empty}
+\printbibliography
+
+% ------------------------------------------------------------
+% Appendices
+% ------------------------------------------------------------
+\clearpage
+\appendix
+\input{appendix}
+\end{document}

@@ -1,0 +1,127 @@
+% Sections/7_discussion.tex
+\section{Discussion}
+
+\subsubsection{Assisted Annotation Shifted Labour from Drawing to Review}
+
+The SAM2 results support the claim that assisted annotation reduced mechanical burden, but they do not support a claim of full automation. SAM2 generated 2,665 proposals, from which 2,040 accepted annotations entered the final dataset. The first-click accuracy of 92.3\% and interaction efficiency of 85.8\% show that most annotations could be completed with limited correction. Compared with the manual Roboflow baseline, SAM2 also produced a substantial indicative time reduction.
+
+However, the correction burden remains important. SAM2 was strongest when the vape boundary was visually clear, but weaker when objects were small, translucent, low-contrast, occluded or visually blended into the background. This means the DCE did not remove human judgement; it changed the user's role from drawing every object manually to reviewing, correcting and accepting model-assisted proposals. For this project, that shift was more realistic than attempting fully automatic annotation.
+
+\subsubsection{Metadata Made Failure Modes Observable}
+
+The metadata workflow was valuable because it made later failure-mode analysis possible. Standard detection metrics can show whether the model performs well overall, but they cannot explain whether failures are concentrated in grass, shadow, clutter, occlusion, blur or small-scale objects. By storing fields such as surface, lighting, clutter, condition, viewpoint, occlusion, motion blur and scale band, the DCE made the dataset more diagnostically useful than a plain bounding-box dataset.
+
+The VLM results show both the value and the limits of this approach. The metadata assistant returned usable suggestions for 1,824 of 2,040 expected records, giving an 89.4\% success rate. However, the 319 human correction records show that VLM metadata could not be treated as ground truth. Corrections were most common for object condition and viewpoint, suggesting that subjective or ambiguous visual fields require more human oversight than scene-level fields such as clutter, blur or occlusion. The decision to calculate scale band geometrically rather than through the VLM was therefore important, because object scale is better derived from bounding-box area than estimated visually.
+
+\subsubsection{The DCE Was a Data Factory, Not Just an Annotation Tool}
+
+The final export result is central to interpreting the DCE. The system did not only produce labelled images; it produced a traceable dataset pipeline from intake to YOLO export. The final output contained 1,204 exported images, 1,204 label files and 2,040 boxes across the \texttt{vape} and \texttt{lighter} classes, with no export warnings. This supports the claim that the DCE created model-ready data rather than stopping at annotation.
+
+The synthetic and scraping results also reinforce this point. The scraper produced a 2,905-image external source pool, while the synthetic module promoted 355 of 400 generated candidates into the usable synthetic training pool. These sources were not merged blindly into the real dataset. They were kept separate, allowing their downstream value to be tested through the UAVape model-ablation workstream. This makes the DCE useful as an experimental infrastructure layer, not only as a labelling interface.
+
+\subsubsection{Limitations}
+
+The main limitation is that the DCE was evaluated primarily through the author's own dataset-construction workflow rather than through a larger multi-user usability study. The results therefore demonstrate technical feasibility, workflow efficiency and dataset readiness, but they do not fully measure how consistently different users would review SAM2 proposals, correct VLM metadata or apply curation categories.
+
+A second limitation is that several efficiency measures are workflow proxies rather than controlled usability experiments. For example, the manual annotation baseline was limited to 50 images. Similarly, curation throughput was measured through the Batch B workflow rather than through a controlled comparison against another platform. These results are still useful, but they should be interpreted as evidence of practical workflow feasibility rather than definitive DCE benchmarks.
+
+Overall, the DCE fulfilled its role in SRQ1 by converting fragmented vape data into curated, annotated, metadata-enriched and model-ready data. Its strongest contribution is that it made dataset construction both faster and more auditable. Rather than functioning as a general annotation interface, the DCE was tailored as a research-oriented dataset construction tool: SAM2 proposals reduced manual annotation effort, hotkey review accelerated curation, VLM assistance helped populate failure-mode metadata, and source-separated scraping and synthetic generation allowed later data-centric ablation. This made the DCE valuable not only for labelling images, but for constructing datasets that could be systematically analysed, compared and improved.
+
+
+\subsection{UAVape Dataset and Model Discussion}
+
+Having discussed the Dataset Construction Engine and the downstream workflow prototype, this section returns to the UAVape detector workstream: whether the constructed dataset and validation-selected model provide credible evidence for disposable vape detection in UAV-oriented imagery.
+
+After testing the data on the YOLO-models, the best chosen model was \texttt{YOLO26s@1280}.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{p{0.15\textwidth} p{0.18\textwidth} r r r r r r}
+\toprule
+\textbf{Input setting} & \textbf{Best validation protocol} & \textbf{All P} & \textbf{All R} & \textbf{All mAP@50} & \textbf{All mAP@50--95} & \textbf{Vape AP50} & \textbf{Vape AP50--95} \\
+\midrule
+640px & YOLO26m@640 & 0.777 & 0.756 & 0.795 & 0.562 & 0.889 & 0.666 \\
+960px & YOLO11s@960 & 0.826 & 0.743 & 0.775 & 0.566 & 0.903 & 0.677 \\
+1280px & YOLO26s@1280 & 0.839 & 0.749 & 0.802 & 0.605 & 0.918 & 0.707 \\
+\bottomrule
+\end{tabularx}
+\caption{Best validation protocols at each tested input-resolution band before final data-source ablation.}
+\label{tab:discussion_resolution_comparison}
+\end{table}
+
+Table~\ref{tab:discussion_resolution_comparison} shows that the 1280px protocol achieved the strongest overall and vape-specific validation performance, suggesting that disposable vape detection is heavily constrained by small-object spatial detail. However, mid- and lower-resolution protocols (e.g., \texttt{YOLO11s@960} and \texttt{YOLO26m@640}) maintained competitive AP@50 scores. Therefore, while 1280px represents the strongest accuracy-focused configuration in this study, the lower-resolution variants remain useful candidates for future edge-hardware latency testing.
+
+SAHI-style tiled inference was tested as a validation-only branch on the lower-resolution models. The aim was to improve 640px and 960px performance enough to match or outperform the 1280px models. However, tiling worsened these runs and produced a high number of predictions relative to the 302 effective validation instances, suggesting duplicate detections, tile-boundary effects or false-positive pressure. In this dataset, full-frame higher-resolution inference was therefore more effective than static slicing. Future work should explore whether dynamic tiling, different overlap settings or retraining with tiled crops can improve lower-resolution edge-oriented models.
+
+The data-centric ablation revealed that single-source data additions (adding only synthetic or only scraped data) produced mixed, non-monotonic returns. Conversely, combining both scraped and synthetic sources yielded a measurable performance improvement. This indicates that complementary source diversity is more valuable than simply scaling raw data volume. Future ablation studies should investigate varying the blend ratios of synthetic-to-scraped data to identify the optimal mix for augmenting real-world training sets.
+
+Following validation, the final combined-source \texttt{YOLO26s@1280} checkpoint was evaluated once on the sealed test split. It achieved an aggregate mAP@50 of 0.851 and mAP@50-95 of 0.638. Crucially, target-class localisation remained robust: vape-specific AP@50 reached 0.882 and AP@50-95 reached 0.685, supporting strong generalisation to the held-out real-image test split.
+
+The \texttt{lighter} class functioned as an auxiliary confuser class. Earlier exploratory one-class iterations suggested that positive-only vape detection was limited when similar-looking litter appeared in the scene (Appendix~\ref{appendix:uavape_ml_method_iterations}). Adding lighters gave the detector explicit examples of a visually similar non-target object, encouraging it to learn a sharper boundary between vapes and vape-like objects. This does not prove operational reliability, but it provides a stronger basis for testing false-positive behaviour than a vape-only dataset.
+
+\subsubsection{Literature Benchmarking}
+
+The comparison in Table~\ref{tab:discussion_literature_comparison} uses the reviewed dataset papers as the benchmark sources \cite{trashnet_github,proenca2020taco,wang2020mjuwaste,cordova2022litter,bashkirova2021zerowaste,wang2018bottle,kraft2021uavvaste,liao2023automatic,pisani2024soda}.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{@{} p{0.12\textwidth} p{0.20\textwidth} p{0.16\textwidth} p{0.18\textwidth} X @{}}
+\toprule
+\textbf{Study / Dataset} & \textbf{Domain and Target} & \textbf{Model / Input Setting} & \textbf{Reported headline metric} & \textbf{Comparison Nuance} \\
+\midrule
+\textbf{UAVape} & UAV-oriented disposable vape detection with lighter confuser class & YOLO26s, 1280px & \textbf{Vape AP50 = 0.882; all-class mAP@50 = 0.851} & Dedicated micro-WEEE target; sealed real test split; modern YOLO-family detector. \\
+UAVVaste & UAV generic rubbish detection & YOLOv4 & mAP@50 = 0.785 & One-class macro-litter; does not isolate vape-like micro-WEEE. \\
+SODA & UAV multi-class litter detection & YOLOv8 with tiled imagery & mAP $\approx$ 0.796 & Strong UAV comparison, but uses broader litter categories and a different tiling protocol. \\
+HAIDA & UAV marine trash / bottle detection & YOLOv4-Tiny & AP50 $>$ 0.70 & Real-time-oriented system using an older lightweight architecture. \\
+BDW & UAV plastic bottle detection & Faster R-CNN / SSD / YOLOv2 variants & AP $\approx$ 0.903 & High reported AP, but focused on larger bottle objects rather than micro-WEEE. \\
+PlastOPol & Ground-level outdoor plastic litter detection & YOLOv5x & AP50 $\approx$ 0.849 & Numerically close to UAVape all-class mAP@50, but non-aerial visual scale changes the task. \\
+TACO & Ground-level multi-class litter detection & YOLOv5x & AP50 $\approx$ 0.633 & Broader, heterogeneous ground-level litter benchmark. \\
+TrashNet & Indoor controlled waste detection & YOLOv5 & mAP@50 $\approx$ 0.950 & Controlled indoor imagery with simpler backgrounds and lighting. \\
+\bottomrule
+\end{tabularx}
+\caption{Contextual performance of UAVape against existing litter-detection benchmarks.}
+\label{tab:discussion_literature_comparison}
+\end{table}
+
+Table~\ref{tab:discussion_literature_comparison} should not be read as a direct leaderboard because the reviewed studies differ in target class, domain, split protocol, annotation format and metric reporting. However, it provides useful context. UAVape reaches a competitive AP50 range while targeting a substantially smaller and more hazardous object class than most reviewed litter systems, which focus on generic rubbish, bottles, plastics or controlled waste categories. This suggests that disposable vapes can be detected as a distinct micro-WEEE class when the dataset is constructed around their specific visual confusers rather than absorbed into broad litter categories.
+
+The comparison also shows that UAVape's performance is likely methodological rather than purely model-driven or dataset-driven. Several reviewed systems rely on older detector families such as YOLOv3, YOLOv4, YOLOv4-Tiny, YOLOv5 or two-stage detectors, whereas UAVape explicitly benchmarked newer YOLO families before selecting YOLO26s. The final result should therefore be interpreted as the combined effect of target-specific dataset construction, auxiliary confuser class design, high-resolution small-object preservation and modern detector selection.
+
+\subsubsection{Failure Modes and Future Limitations}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{uavape_interpolated_metadata_failure_modes.png}
+    \caption{Metadata-stratified failure modes for the final UAVape detector.}
+    \label{fig:failure_modes}
+\end{figure}
+
+The metadata-driven failure analysis identified two main error patterns. False negatives were associated with small object scale, partial occlusion, low contrast and cluttered ground texture, suggesting that the model missed vapes when the object provided limited visual evidence after resizing. False positives were concentrated around bright cylindrical confusers, such as pens, batteries and plastic fragments, suggesting that the model sometimes over-generalised vape-like shape and material cues.
+
+These failure modes define the next dataset and deployment priorities. Future work should expand confuser mining for cylindrical debris, collect more tiny and occluded vape examples, and test the detector under live UAV conditions including motion blur, changing altitude, geolocation error and edge-AI latency. A key limitation of the current study is that the final model was evaluated offline on static imagery rather than physically deployed on a drone. A logical translational next step would therefore be a live field trial with an environmental monitoring partner to evaluate whether the UAVape pipeline changes active detection and retrieval of hazardous micro-WEEE.
+
+\subsection{Cleaner Workflow UI Shows the Translation Problem}
+
+The cleaner workflow prototype addressed the second half of the research question: operationalising detections. A bounding box is not useful by itself. It must be translated into information that a cleaner, volunteer or waste operative can act on.
+
+The prototype therefore represented detections as evidence-backed tasks. The important elements were the image crop, confidence score, map point, hazard identity and task status. These elements preserve the vape as hazardous micro-WEEE rather than generic litter.
+
+Stakeholder feedback supported this direction, especially for hazard communication and field-facing task clarity. However, the results should be interpreted as early prototype feedback rather than deployment evidence. Participants reviewed a workflow concept; they did not use live UAV detections, real GPS routing or a municipal backend. The lower-scoring supervisor-planning items also suggest that the supervisory layer requires further testing with actual supervisors, not only frontline cleaners and volunteers.
+
+The glove-related friction is important because it shows that a field workflow cannot be evaluated only as a clean screen design. Cleaning work involves tools, bags, weather, protective equipment and time pressure. A future system may therefore need larger touch targets, voice interaction, simplified task states or physical controls. The key point is that a detection only matters if it changes the next human action; the UI work made that translation problem visible.
+
+\subsection{Wider Contributions and Future Work}
+
+Although this project focuses on disposable vapes as urban litter, its broader contribution is a reusable end-to-end framework for hazardous micro-litter detection. The project was motivated by the observation that existing UAV-litter approaches often lack consistency across the full computer-vision pipeline, from dataset construction to model evaluation and operational use. UAVape therefore contributes not only a vape detector, but a repeatable process for approaching new hazardous litter classes.
+
+The first wider contribution is the Dataset Construction Engine (DCE). The DCE was built to address the bottleneck of early-stage dataset creation by combining upload, scraping, synthetic generation, hotkey curation, SAM2-assisted annotation, VLM-assisted metadata enrichment, audit diagnostics and YOLO export. Its intended open-source value is that other researchers could use it to construct niche image-detection datasets in-house, while testing whether scraped or synthetic data improves performance in their own domains. Future development should therefore focus on external user testing, clearer documentation and continued integration with newer annotation and vision models.
+
+The second wider contribution is the evaluation discipline used around the UAVape detector. This project does not claim to introduce a new machine-learning architecture. Instead, it shows the value of treating model development as a measured methodological process. The detector was evaluated through a leakage-aware split, controlled comparisons across YOLO families, model scales and input resolutions, and data-source ablations before final held-out testing. This made the final model result easier to interpret because architecture choice, input resolution and training-data composition were tested separately rather than changed informally.
+
+There is still clear room to improve this technical pipeline. Static SAHI-style tiled inference did not improve the lower-resolution models in this project, suggesting that off-the-shelf small-object inference strategies do not automatically solve micro-litter detection. Future work should test alternative tiling settings, dynamic slicing, training-time crop strategies and real edge-device deployment, especially where lower input resolutions may be needed for practical UAV or mobile use.
+
+This process could also be adapted to other small but environmentally significant objects in parks, towpaths, pavements and pedestrian spaces, such as batteries, sharps, e-waste fragments or other hazardous micro-litter. Finally, the project showed that vape waste is larger than the device alone. Physical sourcing and handling made clear that pods, wrappers, packaging, plastic components and battery-related materials form a wider vape-associated litter ecosystem. Future computer-vision work could therefore expand from detecting vape devices to detecting vape-associated waste. More broadly, detection should be paired with civic infrastructure: clearer public micro-WEEE disposal routes, dedicated e-waste bins and better institutional education around vape recycling.

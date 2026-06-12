@@ -1,0 +1,262 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1580" viewBox="0 0 1800 1580">
+<rect width="100%" height="100%" fill="#fbfcfb"/>
+<style>text{font-family:Inter,Arial,Helvetica,sans-serif;letter-spacing:0}</style>
+<text x="70" y="62" font-size="30" fill="#1f2a2e" font-weight="750" text-anchor="start">UAVape Cleanup Planner: Low-Fidelity Wireframe Set</text>
+<text x="70" y="92" font-size="15" fill="#6a7479" font-weight="400" text-anchor="start">Operational flow from model sighting to supervised cleanup task and field status update.</text>
+<rect x="70" y="130" width="520" height="405" rx="12" fill="white" stroke="#aebaba" stroke-width="1.4" />
+<rect x="70" y="130" width="520" height="34" rx="12" fill="#f6f8f7" stroke="#aebaba" stroke-width="1.4" />
+<text x="86" y="153" font-size="13" fill="#1f2a2e" font-weight="700" text-anchor="start">Home</text>
+<rect x="495" y="137" width="78" height="22" rx="11" fill="#e3f0ec" stroke="#bdd8d0" stroke-width="1" /><text x="534.0" y="152" font-size="10" fill="#2f7d6d" font-weight="600" text-anchor="middle">DCE live</text>
+<text x="90" y="208" font-size="22" fill="#1f2a2e" font-weight="750" text-anchor="start">Turn vape sightings into cleanup jobs</text>
+<text x="90" y="236" font-size="13" fill="#6a7479" font-weight="400" text-anchor="start">Evidence-led task planning for councils and campus teams.</text>
+<rect x="90" y="270" width="210" height="44" rx="8" fill="#2f7d6d" stroke="#2f7d6d" stroke-width="1.2" />
+<text x="195" y="298" font-size="13" fill="white" font-weight="700" text-anchor="middle">Open planner</text>
+<rect x="325" y="270" width="175" height="44" rx="8" fill="white" stroke="#c9d2d2" stroke-width="1.2" />
+<text x="412" y="298" font-size="13" fill="#1f2a2e" font-weight="650" text-anchor="middle">Review map</text>
+<rect x="90" y="343" width="470" height="155" rx="8" fill="#edf2ef" stroke="#c9d2d2" stroke-width="1.2" />
+<line x1="110" y1="478" x2="160" y2="365" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="100" y1="371" x2="548" y2="357" stroke="#d8e0dc" stroke-width="1.0" />
+<line x1="152" y1="478" x2="210" y2="365" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="100" y1="401" x2="548" y2="381" stroke="#d8e0dc" stroke-width="1.0" />
+<line x1="194" y1="478" x2="260" y2="365" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="100" y1="431" x2="548" y2="405" stroke="#d8e0dc" stroke-width="1.0" />
+<line x1="236" y1="478" x2="310" y2="365" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="100" y1="461" x2="548" y2="429" stroke="#d8e0dc" stroke-width="1.0" />
+<line x1="278" y1="478" x2="360" y2="365" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="100" y1="491" x2="548" y2="453" stroke="#d8e0dc" stroke-width="1.0" />
+<circle cx="202.8" cy="397.25" r="22" fill="#2f7d6d" opacity="0.18"/>
+<circle cx="202.8" cy="397.25" r="7" fill="#2f7d6d" opacity="0.9"/>
+<circle cx="287.4" cy="426.7" r="31" fill="#c58b2a" opacity="0.18"/>
+<circle cx="287.4" cy="426.7" r="7" fill="#c58b2a" opacity="0.9"/>
+<circle cx="386.1" cy="391.05" r="22" fill="#b85c52" opacity="0.18"/>
+<circle cx="386.1" cy="391.05" r="7" fill="#b85c52" opacity="0.9"/>
+<circle cx="428.4" cy="446.85" r="31" fill="#c58b2a" opacity="0.18"/>
+<circle cx="428.4" cy="446.85" r="7" fill="#c58b2a" opacity="0.9"/>
+<circle cx="254.5" cy="454.6" r="22" fill="#426b91" opacity="0.18"/>
+<circle cx="254.5" cy="454.6" r="7" fill="#426b91" opacity="0.9"/>
+<rect x="90" y="513" width="132" height="22" rx="11" fill="#eef3f1" stroke="#c9d2d2" stroke-width="1" /><text x="156.0" y="528" font-size="10" fill="#1f2a2e" font-weight="600" text-anchor="middle">38 active sightings</text>
+<rect x="235" y="513" width="86" height="22" rx="11" fill="#fff4df" stroke="#ead4a5" stroke-width="1" /><text x="278.0" y="528" font-size="10" fill="#c58b2a" font-weight="600" text-anchor="middle">12 urgent</text>
+<rect x="660" y="130" width="520" height="405" rx="12" fill="white" stroke="#aebaba" stroke-width="1.4" />
+<rect x="660" y="130" width="520" height="34" rx="12" fill="#f6f8f7" stroke="#aebaba" stroke-width="1.4" />
+<text x="676" y="153" font-size="13" fill="#1f2a2e" font-weight="700" text-anchor="start">Supervisor Dashboard</text>
+<rect x="1085" y="137" width="78" height="22" rx="11" fill="#e3f0ec" stroke="#bdd8d0" stroke-width="1" /><text x="1124.0" y="152" font-size="10" fill="#2f7d6d" font-weight="600" text-anchor="middle">DCE live</text>
+<rect x="680" y="188" width="96" height="76" rx="8" fill="#f6f8f7" stroke="#c9d2d2" stroke-width="1.2" />
+<text x="694" y="216" font-size="24" fill="#2f7d6d" font-weight="750" text-anchor="start">38</text>
+<text x="694" y="243" font-size="11" fill="#6a7479" font-weight="600" text-anchor="start">Active</text>
+<rect x="792" y="188" width="96" height="76" rx="8" fill="#f6f8f7" stroke="#c9d2d2" stroke-width="1.2" />
+<text x="806" y="216" font-size="24" fill="#b85c52" font-weight="750" text-anchor="start">12</text>
+<text x="806" y="243" font-size="11" fill="#6a7479" font-weight="600" text-anchor="start">Urgent</text>
+<rect x="904" y="188" width="96" height="76" rx="8" fill="#f6f8f7" stroke="#c9d2d2" stroke-width="1.2" />
+<text x="918" y="216" font-size="24" fill="#426b91" font-weight="750" text-anchor="start">17</text>
+<text x="918" y="243" font-size="11" fill="#6a7479" font-weight="600" text-anchor="start">Assigned</text>
+<rect x="1016" y="188" width="96" height="76" rx="8" fill="#f6f8f7" stroke="#c9d2d2" stroke-width="1.2" />
+<text x="1030" y="216" font-size="24" fill="#c58b2a" font-weight="750" text-anchor="start">6</text>
+<text x="1030" y="243" font-size="11" fill="#6a7479" font-weight="600" text-anchor="start">Review</text>
+<rect x="680" y="293" width="280" height="122" rx="6" fill="none" stroke="#c9d2d2" stroke-width="1.2" />
+<line x1="773.3333333333334" y1="293" x2="773.3333333333334" y2="415" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="866.6666666666666" y1="293" x2="866.6666666666666" y2="415" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="680" y1="315" x2="960" y2="315" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="680" y1="337" x2="960" y2="337" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="680" y1="359" x2="960" y2="359" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="680" y1="381" x2="960" y2="381" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="680" y1="403" x2="960" y2="403" stroke="#dce3e2" stroke-width="0.9" />
+<rect x="985" y="293" width="165" height="122" rx="8" fill="#edf2ef" stroke="#c9d2d2" stroke-width="1.2" />
+<line x1="1005" y1="395" x2="1055" y2="315" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="995" y1="321" x2="1138" y2="307" stroke="#d8e0dc" stroke-width="1.0" />
+<line x1="1047" y1="395" x2="1105" y2="315" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="995" y1="351" x2="1138" y2="331" stroke="#d8e0dc" stroke-width="1.0" />
+<line x1="1089" y1="395" x2="1155" y2="315" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="995" y1="381" x2="1138" y2="355" stroke="#d8e0dc" stroke-width="1.0" />
+<line x1="1131" y1="395" x2="1205" y2="315" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="995" y1="411" x2="1138" y2="379" stroke="#d8e0dc" stroke-width="1.0" />
+<line x1="1173" y1="395" x2="1255" y2="315" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="995" y1="441" x2="1138" y2="403" stroke="#d8e0dc" stroke-width="1.0" />
+<circle cx="1024.6" cy="335.7" r="22" fill="#2f7d6d" opacity="0.18"/>
+<circle cx="1024.6" cy="335.7" r="7" fill="#2f7d6d" opacity="0.9"/>
+<circle cx="1054.3" cy="358.88" r="31" fill="#c58b2a" opacity="0.18"/>
+<circle cx="1054.3" cy="358.88" r="7" fill="#c58b2a" opacity="0.9"/>
+<circle cx="1088.95" cy="330.82" r="22" fill="#b85c52" opacity="0.18"/>
+<circle cx="1088.95" cy="330.82" r="7" fill="#b85c52" opacity="0.9"/>
+<circle cx="1103.8" cy="374.74" r="31" fill="#c58b2a" opacity="0.18"/>
+<circle cx="1103.8" cy="374.74" r="7" fill="#c58b2a" opacity="0.9"/>
+<circle cx="1042.75" cy="380.84000000000003" r="22" fill="#426b91" opacity="0.18"/>
+<circle cx="1042.75" cy="380.84000000000003" r="7" fill="#426b91" opacity="0.9"/>
+<text x="680" y="443" font-size="13" fill="#1f2a2e" font-weight="700" text-anchor="start">Priority work</text>
+<rect x="680" y="460" width="470" height="24" rx="5" fill="white" stroke="#dce3e2" stroke-width="1.2" />
+<text x="692" y="477" font-size="10.5" fill="#6a7479" font-weight="400" text-anchor="start">High risk near bins</text>
+<rect x="680" y="491" width="470" height="24" rx="5" fill="white" stroke="#dce3e2" stroke-width="1.2" />
+<text x="692" y="508" font-size="10.5" fill="#6a7479" font-weight="400" text-anchor="start">School route cluster</text>
+<rect x="680" y="522" width="470" height="24" rx="5" fill="white" stroke="#dce3e2" stroke-width="1.2" />
+<text x="692" y="539" font-size="10.5" fill="#6a7479" font-weight="400" text-anchor="start">Needs evidence review</text>
+<rect x="1250" y="130" width="520" height="405" rx="12" fill="white" stroke="#aebaba" stroke-width="1.4" />
+<rect x="1250" y="130" width="520" height="34" rx="12" fill="#f6f8f7" stroke="#aebaba" stroke-width="1.4" />
+<text x="1266" y="153" font-size="13" fill="#1f2a2e" font-weight="700" text-anchor="start">Detection Map</text>
+<rect x="1675" y="137" width="78" height="22" rx="11" fill="#e3f0ec" stroke="#bdd8d0" stroke-width="1" /><text x="1714.0" y="152" font-size="10" fill="#2f7d6d" font-weight="600" text-anchor="middle">DCE live</text>
+<rect x="1270" y="188" width="310" height="240" rx="8" fill="#edf2ef" stroke="#c9d2d2" stroke-width="1.2" />
+<line x1="1290" y1="408" x2="1340" y2="210" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="1280" y1="216" x2="1568" y2="202" stroke="#d8e0dc" stroke-width="1.0" />
+<line x1="1332" y1="408" x2="1390" y2="210" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="1280" y1="246" x2="1568" y2="226" stroke="#d8e0dc" stroke-width="1.0" />
+<line x1="1374" y1="408" x2="1440" y2="210" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="1280" y1="276" x2="1568" y2="250" stroke="#d8e0dc" stroke-width="1.0" />
+<line x1="1416" y1="408" x2="1490" y2="210" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="1280" y1="306" x2="1568" y2="274" stroke="#d8e0dc" stroke-width="1.0" />
+<line x1="1458" y1="408" x2="1540" y2="210" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="1280" y1="336" x2="1568" y2="298" stroke="#d8e0dc" stroke-width="1.0" />
+<circle cx="1344.4" cy="272.0" r="7" fill="#2f7d6d"/>
+<circle cx="1344.4" cy="272.0" r="13" fill="none" stroke="#2f7d6d" opacity="0.26" stroke-width="3"/>
+<circle cx="1400.2" cy="317.6" r="7" fill="#2f7d6d"/>
+<circle cx="1400.2" cy="317.6" r="13" fill="none" stroke="#2f7d6d" opacity="0.26" stroke-width="3"/>
+<circle cx="1465.3" cy="262.4" r="7" fill="#b85c52"/>
+<circle cx="1465.3" cy="262.4" r="13" fill="none" stroke="#b85c52" opacity="0.26" stroke-width="3"/>
+<circle cx="1493.2" cy="348.8" r="7" fill="#2f7d6d"/>
+<circle cx="1493.2" cy="348.8" r="13" fill="none" stroke="#2f7d6d" opacity="0.26" stroke-width="3"/>
+<circle cx="1378.5" cy="360.79999999999995" r="7" fill="#2f7d6d"/>
+<circle cx="1378.5" cy="360.79999999999995" r="13" fill="none" stroke="#2f7d6d" opacity="0.26" stroke-width="3"/>
+<rect x="1600" y="188" width="140" height="240" rx="8" fill="#f6f8f7" stroke="#c9d2d2" stroke-width="1.2" />
+<text x="1615" y="216" font-size="12" fill="#1f2a2e" font-weight="700" text-anchor="start">Selected sighting</text>
+<rect x="1615" y="234" width="86" height="22" rx="11" fill="#e3f0ec" stroke="#bdd8d0" stroke-width="1" /><text x="1658.0" y="249" font-size="10" fill="#2f7d6d" font-weight="600" text-anchor="middle">vape 0.88</text>
+<text x="1615" y="276" font-size="11" fill="#6a7479" font-weight="600" text-anchor="start">Evidence</text>
+<rect x="1615" y="288" width="110" height="64" rx="6" fill="#dfe7e4" stroke="#cad4d2" stroke-width="1.2" />
+<rect x="1615" y="373" width="110" height="34" rx="7" fill="#2f7d6d" stroke="#2f7d6d" stroke-width="1.2" />
+<text x="1670" y="395" font-size="11" fill="white" font-weight="700" text-anchor="middle">Create task</text>
+<rect x="1270" y="448" width="120" height="22" rx="11" fill="#eef3f1" stroke="#c9d2d2" stroke-width="1" /><text x="1330.0" y="463" font-size="10" fill="#1f2a2e" font-weight="600" text-anchor="middle">filter: unassigned</text>
+<rect x="70" y="605" width="520" height="405" rx="12" fill="white" stroke="#aebaba" stroke-width="1.4" />
+<rect x="70" y="605" width="520" height="34" rx="12" fill="#f6f8f7" stroke="#aebaba" stroke-width="1.4" />
+<text x="86" y="628" font-size="13" fill="#1f2a2e" font-weight="700" text-anchor="start">Hotspot Map</text>
+<rect x="495" y="612" width="78" height="22" rx="11" fill="#e3f0ec" stroke="#bdd8d0" stroke-width="1" /><text x="534.0" y="627" font-size="10" fill="#2f7d6d" font-weight="600" text-anchor="middle">DCE live</text>
+<rect x="90" y="663" width="470" height="250" rx="8" fill="#edf2ef" stroke="#c9d2d2" stroke-width="1.2" />
+<line x1="110" y1="893" x2="160" y2="685" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="100" y1="691" x2="548" y2="677" stroke="#d8e0dc" stroke-width="1.0" />
+<line x1="152" y1="893" x2="210" y2="685" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="100" y1="721" x2="548" y2="701" stroke="#d8e0dc" stroke-width="1.0" />
+<line x1="194" y1="893" x2="260" y2="685" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="100" y1="751" x2="548" y2="725" stroke="#d8e0dc" stroke-width="1.0" />
+<line x1="236" y1="893" x2="310" y2="685" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="100" y1="781" x2="548" y2="749" stroke="#d8e0dc" stroke-width="1.0" />
+<line x1="278" y1="893" x2="360" y2="685" stroke="#d8e0dc" stroke-width="1.1" />
+<line x1="100" y1="811" x2="548" y2="773" stroke="#d8e0dc" stroke-width="1.0" />
+<circle cx="202.8" cy="750.5" r="22" fill="#2f7d6d" opacity="0.18"/>
+<circle cx="202.8" cy="750.5" r="7" fill="#2f7d6d" opacity="0.9"/>
+<circle cx="287.4" cy="798.0" r="31" fill="#c58b2a" opacity="0.18"/>
+<circle cx="287.4" cy="798.0" r="7" fill="#c58b2a" opacity="0.9"/>
+<circle cx="386.1" cy="740.5" r="22" fill="#b85c52" opacity="0.18"/>
+<circle cx="386.1" cy="740.5" r="7" fill="#b85c52" opacity="0.9"/>
+<circle cx="428.4" cy="830.5" r="31" fill="#c58b2a" opacity="0.18"/>
+<circle cx="428.4" cy="830.5" r="7" fill="#c58b2a" opacity="0.9"/>
+<circle cx="254.5" cy="843.0" r="22" fill="#426b91" opacity="0.18"/>
+<circle cx="254.5" cy="843.0" r="7" fill="#426b91" opacity="0.9"/>
+<text x="90" y="949" font-size="13" fill="#1f2a2e" font-weight="700" text-anchor="start">Priority areas</text>
+<rect x="90" y="966" width="120" height="22" rx="11" fill="#e3f0ec" stroke="#bdd8d0" stroke-width="1" /><text x="150.0" y="981" font-size="10" fill="#2f7d6d" font-weight="600" text-anchor="middle">repeat sightings</text>
+<rect x="222" y="966" width="92" height="22" rx="11" fill="#fff4df" stroke="#ead4a5" stroke-width="1" /><text x="268.0" y="981" font-size="10" fill="#c58b2a" font-weight="600" text-anchor="middle">near school</text>
+<rect x="325" y="966" width="82" height="22" rx="11" fill="#f7e5e2" stroke="#e4b8b1" stroke-width="1" /><text x="366.0" y="981" font-size="10" fill="#b85c52" font-weight="600" text-anchor="middle">high risk</text>
+<rect x="660" y="605" width="520" height="405" rx="12" fill="white" stroke="#aebaba" stroke-width="1.4" />
+<rect x="660" y="605" width="520" height="34" rx="12" fill="#f6f8f7" stroke="#aebaba" stroke-width="1.4" />
+<text x="676" y="628" font-size="13" fill="#1f2a2e" font-weight="700" text-anchor="start">Task Queue</text>
+<rect x="1085" y="612" width="78" height="22" rx="11" fill="#e3f0ec" stroke="#bdd8d0" stroke-width="1" /><text x="1124.0" y="627" font-size="10" fill="#2f7d6d" font-weight="600" text-anchor="middle">DCE live</text>
+<text x="680" y="671" font-size="16" fill="#1f2a2e" font-weight="750" text-anchor="start">Cleanup jobs</text>
+<rect x="680" y="691" width="470" height="188" rx="6" fill="none" stroke="#c9d2d2" stroke-width="1.2" />
+<line x1="774.0" y1="691" x2="774.0" y2="879" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="868.0" y1="691" x2="868.0" y2="879" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="962.0" y1="691" x2="962.0" y2="879" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="1056.0" y1="691" x2="1056.0" y2="879" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="680" y1="713" x2="1150" y2="713" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="680" y1="735" x2="1150" y2="735" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="680" y1="757" x2="1150" y2="757" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="680" y1="779" x2="1150" y2="779" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="680" y1="801" x2="1150" y2="801" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="680" y1="823" x2="1150" y2="823" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="680" y1="845" x2="1150" y2="845" stroke="#dce3e2" stroke-width="0.9" />
+<line x1="680" y1="867" x2="1150" y2="867" stroke="#dce3e2" stroke-width="0.9" />
+<text x="690" y="707" font-size="9.5" fill="#6a7479" font-weight="700" text-anchor="start">Priority</text>
+<text x="783" y="707" font-size="9.5" fill="#6a7479" font-weight="700" text-anchor="start">Location</text>
+<text x="876" y="707" font-size="9.5" fill="#6a7479" font-weight="700" text-anchor="start">Score</text>
+<text x="969" y="707" font-size="9.5" fill="#6a7479" font-weight="700" text-anchor="start">Assignee</text>
+<text x="1062" y="707" font-size="9.5" fill="#6a7479" font-weight="700" text-anchor="start">Status</text>
+<rect x="690" y="721" width="54" height="22" rx="11" fill="#f7e5e2" stroke="none" stroke-width="1" /><text x="717.0" y="736" font-size="10" fill="#b85c52" font-weight="600" text-anchor="middle">High</text>
+<rect x="690" y="743" width="54" height="22" rx="11" fill="#fff4df" stroke="none" stroke-width="1" /><text x="717.0" y="758" font-size="10" fill="#c58b2a" font-weight="600" text-anchor="middle">Med</text>
+<rect x="690" y="765" width="54" height="22" rx="11" fill="#f7e5e2" stroke="none" stroke-width="1" /><text x="717.0" y="780" font-size="10" fill="#b85c52" font-weight="600" text-anchor="middle">High</text>
+<rect x="690" y="787" width="54" height="22" rx="11" fill="#eef3f1" stroke="none" stroke-width="1" /><text x="717.0" y="802" font-size="10" fill="#6a7479" font-weight="600" text-anchor="middle">Low</text>
+<rect x="690" y="809" width="54" height="22" rx="11" fill="#fff4df" stroke="none" stroke-width="1" /><text x="717.0" y="824" font-size="10" fill="#c58b2a" font-weight="600" text-anchor="middle">Review</text>
+<rect x="990" y="908" width="160" height="42" rx="8" fill="#2f7d6d" stroke="#2f7d6d" stroke-width="1.2" />
+<text x="1070" y="934" font-size="12" fill="white" font-weight="700" text-anchor="middle">Assign selected</text>
+<rect x="1250" y="605" width="520" height="405" rx="12" fill="white" stroke="#aebaba" stroke-width="1.4" />
+<rect x="1250" y="605" width="520" height="34" rx="12" fill="#f6f8f7" stroke="#aebaba" stroke-width="1.4" />
+<text x="1266" y="628" font-size="13" fill="#1f2a2e" font-weight="700" text-anchor="start">Evidence Detail</text>
+<rect x="1675" y="612" width="78" height="22" rx="11" fill="#e3f0ec" stroke="#bdd8d0" stroke-width="1" /><text x="1714.0" y="627" font-size="10" fill="#2f7d6d" font-weight="600" text-anchor="middle">DCE live</text>
+<rect x="1270" y="663" width="260" height="190" rx="8" fill="#dfe7e4" stroke="#cad4d2" stroke-width="1.2" />
+<rect x="1342" y="727" width="112" height="58" rx="2" fill="none" stroke="#2f7d6d" stroke-width="2" />
+<text x="1550" y="683" font-size="11" fill="#6a7479" font-weight="700" text-anchor="start">Model label</text>
+<text x="1550" y="711" font-size="18" fill="#1f2a2e" font-weight="750" text-anchor="start">Disposable vape</text>
+<rect x="1550" y="728" width="126" height="22" rx="11" fill="#e3f0ec" stroke="#bdd8d0" stroke-width="1" /><text x="1613.0" y="743" font-size="10" fill="#2f7d6d" font-weight="600" text-anchor="middle">confidence 0.88</text>
+<rect x="1550" y="757" width="125" height="22" rx="11" fill="#f7e5e2" stroke="#e4b8b1" stroke-width="1" /><text x="1612.5" y="772" font-size="10" fill="#b85c52" font-weight="600" text-anchor="middle">combustion risk</text>
+<text x="1270" y="893" font-size="13" fill="#1f2a2e" font-weight="700" text-anchor="start">Status timeline</text>
+<circle cx="1304" cy="931" r="8" fill="#2f7d6d" stroke="#2f7d6d" stroke-width="2"/>
+<text x="1304" y="955" font-size="10" fill="#6a7479" font-weight="600" text-anchor="middle">Detected</text>
+<line x1="1315" y1="931" x2="1398" y2="931" stroke="#2f7d6d" stroke-width="2" />
+<circle cx="1409" cy="931" r="8" fill="#2f7d6d" stroke="#2f7d6d" stroke-width="2"/>
+<text x="1409" y="955" font-size="10" fill="#6a7479" font-weight="600" text-anchor="middle">Reviewed</text>
+<line x1="1420" y1="931" x2="1503" y2="931" stroke="#2f7d6d" stroke-width="2" />
+<circle cx="1514" cy="931" r="8" fill="#2f7d6d" stroke="#2f7d6d" stroke-width="2"/>
+<text x="1514" y="955" font-size="10" fill="#6a7479" font-weight="600" text-anchor="middle">Assigned</text>
+<line x1="1525" y1="931" x2="1608" y2="931" stroke="#c9d2d2" stroke-width="2" />
+<circle cx="1619" cy="931" r="8" fill="white" stroke="#2f7d6d" stroke-width="2"/>
+<text x="1619" y="955" font-size="10" fill="#6a7479" font-weight="600" text-anchor="middle">Collected</text>
+<rect x="70" y="1080" width="520" height="405" rx="12" fill="white" stroke="#aebaba" stroke-width="1.4" />
+<rect x="70" y="1080" width="520" height="34" rx="12" fill="#f6f8f7" stroke="#aebaba" stroke-width="1.4" />
+<text x="86" y="1103" font-size="13" fill="#1f2a2e" font-weight="700" text-anchor="start">Assignment Flow</text>
+<rect x="495" y="1087" width="78" height="22" rx="11" fill="#e3f0ec" stroke="#bdd8d0" stroke-width="1" /><text x="534.0" y="1102" font-size="10" fill="#2f7d6d" font-weight="600" text-anchor="middle">DCE live</text>
+<text x="90" y="1144" font-size="16" fill="#1f2a2e" font-weight="750" text-anchor="start">Send task to team</text>
+<rect x="90" y="1166" width="220" height="120" rx="8" fill="#f6f8f7" stroke="#c9d2d2" stroke-width="1.2" />
+<text x="106" y="1196" font-size="12" fill="#1f2a2e" font-weight="700" text-anchor="start">Selected task</text>
+<rect x="106" y="1214" width="82" height="22" rx="11" fill="#f7e5e2" stroke="#e4b8b1" stroke-width="1" /><text x="147.0" y="1229" font-size="10" fill="#b85c52" font-weight="600" text-anchor="middle">High risk</text>
+<rect x="340" y="1166" width="220" height="120" rx="8" fill="#f6f8f7" stroke="#c9d2d2" stroke-width="1.2" />
+<text x="356" y="1196" font-size="12" fill="#1f2a2e" font-weight="700" text-anchor="start">Team</text>
+<rect x="356" y="1213" width="78" height="22" rx="11" fill="white" stroke="#c9d2d2" stroke-width="1" /><text x="395.0" y="1228" font-size="10" fill="#1f2a2e" font-weight="600" text-anchor="middle">Team A</text>
+<rect x="356" y="1240" width="78" height="22" rx="11" fill="white" stroke="#c9d2d2" stroke-width="1" /><text x="395.0" y="1255" font-size="10" fill="#1f2a2e" font-weight="600" text-anchor="middle">Team B</text>
+<rect x="356" y="1267" width="78" height="22" rx="11" fill="white" stroke="#c9d2d2" stroke-width="1" /><text x="395.0" y="1282" font-size="10" fill="#1f2a2e" font-weight="600" text-anchor="middle">On-call</text>
+<text x="90" y="1328" font-size="12" fill="#1f2a2e" font-weight="700" text-anchor="start">Urgency</text>
+<rect x="90" y="1343" width="78" height="22" rx="11" fill="#f7e5e2" stroke="none" stroke-width="1" /><text x="129.0" y="1358" font-size="10" fill="#b85c52" font-weight="600" text-anchor="middle">Today</text>
+<rect x="182" y="1343" width="78" height="22" rx="11" fill="#fff4df" stroke="none" stroke-width="1" /><text x="221.0" y="1358" font-size="10" fill="#c58b2a" font-weight="600" text-anchor="middle">48h</text>
+<rect x="274" y="1343" width="78" height="22" rx="11" fill="#eef3f1" stroke="none" stroke-width="1" /><text x="313.0" y="1358" font-size="10" fill="#6a7479" font-weight="600" text-anchor="middle">Review</text>
+<rect x="390" y="1373" width="170" height="42" rx="8" fill="#2f7d6d" stroke="#2f7d6d" stroke-width="1.2" />
+<text x="475" y="1399" font-size="12" fill="white" font-weight="700" text-anchor="middle">Send assignment</text>
+<rect x="660" y="1080" width="520" height="405" rx="12" fill="white" stroke="#aebaba" stroke-width="1.4" />
+<rect x="660" y="1080" width="520" height="34" rx="12" fill="#f6f8f7" stroke="#aebaba" stroke-width="1.4" />
+<text x="676" y="1103" font-size="13" fill="#1f2a2e" font-weight="700" text-anchor="start">Cleaner Phone Task</text>
+<rect x="1126" y="1090" width="34" height="8" rx="4" fill="#d7dfdd" stroke="none" stroke-width="1.2" />
+<rect x="825" y="1130" width="190" height="310" rx="24" fill="white" stroke="#aebaba" stroke-width="1.5" />
+<rect x="847" y="1152" width="146" height="70" rx="10" fill="#dfe7e4" stroke="#cad4d2" stroke-width="1.2" />
+<text x="847" y="1248" font-size="17" fill="#1f2a2e" font-weight="750" text-anchor="start">Vape cleanup</text>
+<text x="847" y="1272" font-size="11" fill="#6a7479" font-weight="400" text-anchor="start">12m from east bin</text>
+<rect x="847" y="1288" width="100" height="22" rx="11" fill="#f7e5e2" stroke="#e4b8b1" stroke-width="1" /><text x="897.0" y="1303" font-size="10" fill="#b85c52" font-weight="600" text-anchor="middle">high priority</text>
+<rect x="847" y="1328" width="146" height="34" rx="8" fill="#2f7d6d" stroke="#2f7d6d" stroke-width="1.2" />
+<text x="920" y="1350" font-size="11" fill="white" font-weight="700" text-anchor="middle">Collected</text>
+<rect x="847" y="1370" width="146" height="34" rx="8" fill="white" stroke="#c9d2d2" stroke-width="1.2" />
+<text x="920" y="1392" font-size="11" fill="#1f2a2e" font-weight="650" text-anchor="middle">Not found</text>
+<rect x="1250" y="1080" width="520" height="405" rx="12" fill="white" stroke="#aebaba" stroke-width="1.4" />
+<rect x="1250" y="1080" width="520" height="34" rx="12" fill="#f6f8f7" stroke="#aebaba" stroke-width="1.4" />
+<text x="1266" y="1103" font-size="13" fill="#1f2a2e" font-weight="700" text-anchor="start">Mobile Status Screens</text>
+<rect x="1716" y="1090" width="34" height="8" rx="4" fill="#d7dfdd" stroke="none" stroke-width="1.2" />
+<rect x="1270" y="1158" width="130" height="250" rx="22" fill="white" stroke="#aebaba" stroke-width="1.3" />
+<circle cx="1335" cy="1233" r="30" fill="#2f7d6d" opacity="0.14"/>
+<circle cx="1335" cy="1233" r="12" fill="#2f7d6d"/>
+<text x="1335" y="1290" font-size="13" fill="#1f2a2e" font-weight="750" text-anchor="middle">Collected</text>
+<rect x="1290" y="1320" width="90" height="30" rx="8" fill="#f6f8f7" stroke="#c9d2d2" stroke-width="1.2" />
+<rect x="1290" y="1360" width="90" height="30" rx="8" fill="#2f7d6d" stroke="#2f7d6d" stroke-width="1.2" />
+<text x="1335" y="1380" font-size="10.5" fill="white" font-weight="700" text-anchor="middle">Submit</text>
+<rect x="1425" y="1158" width="130" height="250" rx="22" fill="white" stroke="#aebaba" stroke-width="1.3" />
+<circle cx="1490" cy="1233" r="30" fill="#c58b2a" opacity="0.14"/>
+<circle cx="1490" cy="1233" r="12" fill="#c58b2a"/>
+<text x="1490" y="1290" font-size="13" fill="#1f2a2e" font-weight="750" text-anchor="middle">Not found</text>
+<rect x="1445" y="1320" width="90" height="30" rx="8" fill="#f6f8f7" stroke="#c9d2d2" stroke-width="1.2" />
+<rect x="1445" y="1360" width="90" height="30" rx="8" fill="white" stroke="#c58b2a" stroke-width="1.2" />
+<text x="1490" y="1380" font-size="10.5" fill="#c58b2a" font-weight="700" text-anchor="middle">Submit</text>
+<rect x="1580" y="1158" width="130" height="250" rx="22" fill="white" stroke="#aebaba" stroke-width="1.3" />
+<circle cx="1645" cy="1233" r="30" fill="#b85c52" opacity="0.14"/>
+<circle cx="1645" cy="1233" r="12" fill="#b85c52"/>
+<text x="1645" y="1290" font-size="13" fill="#1f2a2e" font-weight="750" text-anchor="middle">Needs review</text>
+<rect x="1600" y="1320" width="90" height="30" rx="8" fill="#f6f8f7" stroke="#c9d2d2" stroke-width="1.2" />
+<rect x="1600" y="1360" width="90" height="30" rx="8" fill="#b85c52" stroke="#b85c52" stroke-width="1.2" />
+<text x="1645" y="1380" font-size="10.5" fill="white" font-weight="700" text-anchor="middle">Submit</text>
+</svg>

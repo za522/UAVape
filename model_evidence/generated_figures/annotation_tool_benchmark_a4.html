@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Annotation Tool Benchmark for UAVape DCE</title>
+  <style>
+    :root {
+      --paper: oklch(98.4% 0.006 178);
+      --sheet: oklch(99.7% 0.003 178);
+      --ink: oklch(23% 0.025 178);
+      --muted: oklch(48% 0.018 178);
+      --line: oklch(83% 0.018 178);
+      --panel: oklch(96.4% 0.010 178);
+      --green: oklch(53% 0.102 166);
+      --green-soft: oklch(92% 0.048 166);
+      --amber: oklch(64% 0.112 77);
+      --amber-soft: oklch(94% 0.055 82);
+      --red: oklch(57% 0.112 29);
+      --red-soft: oklch(92% 0.042 29);
+      --blue: oklch(49% 0.074 235);
+      --blue-soft: oklch(92% 0.032 235);
+      --shadow: 0 12px 30px oklch(23% 0.025 178 / 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--paper);
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.34;
+    }
+
+    .sheet {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 14px auto;
+      padding: 15mm 14mm;
+      background: var(--sheet);
+      box-shadow: var(--shadow);
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr 142px;
+      gap: 16px;
+      align-items: start;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 11px;
+      margin-bottom: 13px;
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 22px;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 10.5px;
+      max-width: 575px;
+      margin-top: 6px;
+    }
+
+    .tag-stack {
+      display: grid;
+      gap: 4px;
+      justify-items: stretch;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 18px;
+      padding: 0 7px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: var(--panel);
+      font-size: 8.2px;
+      font-weight: 750;
+      color: var(--muted);
+    }
+
+    .pill.high {
+      color: var(--green);
+      background: var(--green-soft);
+      border-color: oklch(76% 0.06 166);
+    }
+
+    .pill.medium {
+      color: var(--amber);
+      background: var(--amber-soft);
+      border-color: oklch(80% 0.08 77);
+    }
+
+    .pill.platform {
+      color: var(--blue);
+      background: var(--blue-soft);
+      border-color: oklch(78% 0.045 235);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 11px;
+    }
+
+    .note {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 6px;
+      padding: 8px 9px;
+      font-size: 9.1px;
+      color: var(--muted);
+    }
+
+    .note strong {
+      color: var(--ink);
+    }
+
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      border: 1px solid var(--line);
+      margin-bottom: 13px;
+      font-size: 8.5px;
+    }
+
+    .summary-table th,
+    .summary-table td {
+      padding: 5.8px 6.5px;
+      vertical-align: top;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .summary-table th:last-child,
+    .summary-table td:last-child {
+      border-right: 0;
+    }
+
+    .summary-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .summary-table th {
+      background: oklch(95.2% 0.010 178);
+      text-align: left;
+      font-size: 8px;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .summary-table tbody tr:nth-child(even) {
+      background: oklch(98.1% 0.004 178);
+    }
+
+    .summary-table td:first-child {
+      background: oklch(96.8% 0.007 178);
+    }
+
+    .tool {
+      font-weight: 800;
+      color: var(--ink);
+      white-space: normal;
+    }
+
+    .matrix-title {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 14px 0 8px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 14px;
+      line-height: 1.1;
+    }
+
+    .matrix-title p {
+      color: var(--muted);
+      font-size: 8.6px;
+      text-align: right;
+      max-width: 340px;
+    }
+
+    .metric-block {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 7px;
+      background: var(--sheet);
+    }
+
+    .metric-block + .metric-block {
+      margin-top: 8px;
+    }
+
+    .metric-head {
+      display: grid;
+      grid-template-columns: 0.25fr 0.75fr;
+      gap: 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .metric-name,
+    .metric-why {
+      padding: 6.5px 8px;
+      font-size: 8.9px;
+    }
+
+    .metric-name {
+      font-weight: 850;
+      color: var(--ink);
+      border-right: 1px solid var(--line);
+    }
+
+    .metric-why {
+      color: var(--muted);
+      line-height: 1.28;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tool-cell {
+      min-height: 45px;
+      display: grid;
+      grid-template-columns: 86px minmax(0, 1fr);
+      gap: 8px;
+      padding: 6.5px 8px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      font-size: 8.25px;
+      color: var(--muted);
+      align-items: start;
+    }
+
+    .tool-cell:nth-child(2n) {
+      border-right: 0;
+    }
+
+    .tool-cell:nth-child(4n+1),
+    .tool-cell:nth-child(4n+2) {
+      background: oklch(98.2% 0.004 178);
+    }
+
+    .tool-cell:nth-last-child(-n+2) {
+      border-bottom: 0;
+    }
+
+    .tool-name {
+      display: flex;
+      align-items: flex-start;
+      gap: 5px;
+      font-weight: 850;
+      color: var(--ink);
+      line-height: 1.16;
+    }
+
+    .marker {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-top: 3px;
+      flex: 0 0 auto;
+      background: var(--blue);
+    }
+
+    .marker.high {
+      background: var(--green);
+    }
+
+    .marker.medium {
+      background: var(--amber);
+    }
+
+    .marker.low {
+      background: var(--red);
+    }
+
+    .sources {
+      margin-top: 11px;
+      padding-top: 8px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 8px;
+      columns: 2;
+      column-gap: 18px;
+    }
+
+    .sources p {
+      margin: 0 0 5px;
+      break-inside: avoid;
+    }
+
+    @media print {
+      html,
+      body {
+        background: var(--sheet);
+      }
+
+      .sheet {
+        width: auto;
+        min-height: auto;
+        margin: 0;
+        padding: 10mm;
+        box-shadow: none;
+      }
+
+      @page {
+        size: A4 portrait;
+        margin: 8mm;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <header>
+      <div>
+        <h1>Annotation Tool Benchmark for UAVape DCE</h1>
+        <p class="subtitle">Portrait A4 appendix version comparing industry-standard annotation tools against the practical needs of the UAVape Dataset Construction Engine.</p>
+      </div>
+      <div class="tag-stack">
+        <span class="pill high">primary research</span>
+        <span class="pill platform">computer vision tools</span>
+        <span class="pill medium">appendix table</span>
+      </div>
+    </header>
+
+    <section class="intro-grid" aria-label="Benchmark context">
+      <p class="note"><strong>Purpose.</strong> The benchmark asks whether existing annotation platforms can support small-object vape detection workflows: image review, bounding boxes, QA, metadata, YOLO export and iterative model improvement.</p>
+      <p class="note"><strong>Key finding.</strong> Mature tools provide strong labelling and export support, but none directly match the full UAVape DCE requirement without configuration or compromise.</p>
+    </section>
+
+    <table class="summary-table">
+      <colgroup>
+        <col style="width: 15%">
+        <col style="width: 32%">
+        <col style="width: 24%">
+        <col style="width: 29%">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Best suited for</th>
+          <th>UAVape fit</th>
+          <th>Main limitation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tool">CVAT</td>
+          <td>Open-source or self-hosted computer-vision annotation.</td>
+          <td><span class="pill high">High</span> Robust CV labels and YOLO export.</td>
+          <td>Generic workflow; DCE metadata/provenance needs customisation.</td>
+        </tr>
+        <tr>
+          <td class="tool">Label Studio</td>
+          <td>Flexible multimodal labelling across CV, NLP, audio and AI evaluation.</td>
+          <td><span class="pill medium">Medium-high</span> Flexible and open.</td>
+          <td>Configuration-heavy; less CV-specific out of the box.</td>
+        </tr>
+        <tr>
+          <td class="tool">Roboflow</td>
+          <td>Fast web-based CV dataset annotation, versioning and training export.</td>
+          <td><span class="pill high">High</span> Strong YOLO-friendly workflow.</td>
+          <td>SaaS/platform dependence can constrain bespoke research control.</td>
+        </tr>
+        <tr>
+          <td class="tool">Ultralytics</td>
+          <td>YOLO-native annotation, training, export and deployment workflow.</td>
+          <td><span class="pill high">High</span> Excellent for YOLO iteration.</td>
+          <td>Narrower ecosystem focus than a full bespoke curation engine.</td>
+        </tr>
+        <tr>
+          <td class="tool">Labelbox</td>
+          <td>Enterprise annotation workforces, review pipelines and data operations.</td>
+          <td><span class="pill medium">Medium</span> Strong QA, heavy for this scale.</td>
+          <td>Enterprise-first cost and complexity.</td>
+        </tr>
+        <tr>
+          <td class="tool">Encord</td>
+          <td>Enterprise HITL workflows, multimodal data and production AI pipelines.</td>
+          <td><span class="pill medium">Medium-high</span> Powerful but heavyweight.</td>
+          <td>Commercial platform may exceed dissertation-scale needs.</td>
+        </tr>
+        <tr>
+          <td class="tool">V7 Darwin</td>
+          <td>Professional image/video/medical annotation with model assistance.</td>
+          <td><span class="pill medium">Medium-high</span> Strong auto-annotation.</td>
+          <td>More platform-dependent than a custom DCE.</td>
+        </tr>
+        <tr>
+          <td class="tool">Supervisely</td>
+          <td>Advanced CV workflows, broad modality support and custom apps.</td>
+          <td><span class="pill high">High</span> Strong CV and model assistance.</td>
+          <td>Powerful but complex for a targeted lightweight prototype.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <section aria-label="Detailed benchmark matrix">
+      <div class="matrix-title">
+        <h2>Detailed Vertical Benchmark Matrix</h2>
+        <p>Each block keeps the original metric structure while using a portrait layout suitable for A4 export.</p>
+      </div>
+
+      <article class="metric-block">
+        <div class="metric-head">
+          <div class="metric-name">Target user / audience</div>
+          <div class="metric-why">Clarifies whether the tool is designed for researchers, small teams, enterprise labelling teams or full ML operations.</div>
+        </div>
+        <div class="tool-grid">
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>CVAT</div><div>Research and engineering teams needing open-source or self-hosted vision annotation.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Label Studio</div><div>Flexible open-source labelling for CV, NLP, audio and multimodal AI evaluation.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Roboflow</div><div>CV developers wanting dataset annotation, versioning, training and deployment in one web workflow.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Ultralytics</div><div>YOLO-focused teams wanting upload, annotate, train, export and deploy in one ecosystem.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Labelbox</div><div>Enterprise teams managing large annotation workforces, vendors and review pipelines.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Encord</div><div>Enterprise AI teams needing multimodal labelling and production data operations.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>V7 Darwin</div><div>Professional annotation teams needing image, video or medical annotation workflows.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Supervisely</div><div>Enterprise/CV teams needing broad modality support, custom apps and AI tools.</div></div>
+        </div>
+      </article>
+
+      <article class="metric-block">
+        <div class="metric-head">
+          <div class="metric-name">Deployment / access model</div>
+          <div class="metric-why">Determines whether a tool fits lightweight research, self-hosted privacy needs or paid enterprise deployment.</div>
+        </div>
+        <div class="tool-grid">
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>CVAT</div><div>Open-source self-hosted, cloud CVAT Online and enterprise options.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Label Studio</div><div>Open-source installable platform plus enterprise HumanSignal version.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Roboflow</div><div>SaaS-first web platform with team workspaces and paid credits/features.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Ultralytics</div><div>SaaS platform with account regions, cloud training and hosted deployment.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Labelbox</div><div>SaaS enterprise platform with external workforces and data-engine workflows.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Encord</div><div>Enterprise SaaS/cloud-integrated model; emphasises data staying in the user's cloud.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>V7 Darwin</div><div>Hosted Darwin platform with CLI, SDK, external storage and workflow integrations.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Supervisely</div><div>SaaS, cloud-hosted or self-hosted/on-prem enterprise deployment.</div></div>
+        </div>
+      </article>
+
+      <article class="metric-block">
+        <div class="metric-head">
+          <div class="metric-name">Annotation types</div>
+          <div class="metric-why">Measures whether the tool supports visual labels needed for object detection and future segmentation or pose expansion.</div>
+        </div>
+        <div class="tool-grid">
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>CVAT</div><div>Boxes, polygons, masks, keypoints, skeletons, tracking and 3D point-cloud tasks.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Label Studio</div><div>Boxes, polygons, circular regions, keypoints, tracking and semantic segmentation.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Roboflow</div><div>Boxes, polygons, masks, keypoints and classification depending on project type.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Ultralytics</div><div>Detect boxes, segment polygons, semantic masks, pose keypoints, oriented boxes and classification.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Labelbox</div><div>Configurable editors across image, video, text, documents, geospatial, audio and LLM tasks.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Encord</div><div>Image, video, audio, text, DICOM, HTML, LiDAR/geospatial and multimodal layouts.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>V7 Darwin</div><div>Boxes, polygons, masks, brush tools, video, DICOM/NIfTI and medical views.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Supervisely</div><div>Images, video, 3D/LiDAR, DICOM, polygons, skeletons, 3D lasso and tracking.</div></div>
+        </div>
+      </article>
+
+      <article class="metric-block">
+        <div class="metric-head">
+          <div class="metric-name">AI-assisted labelling</div>
+          <div class="metric-why">Important because small-object annotation is labour intensive and benefits from pre-labels, SAM-style tools and model-in-the-loop workflows.</div>
+        </div>
+        <div class="tool-grid">
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>CVAT</div><div>Automated annotation using pretrained or custom models via API/SDK; current platform highlights SAM.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Label Studio</div><div>Supports ML backends and model pre-labelling, but requires more setup.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Roboflow</div><div>Label Assist, Smart Polygon/SAM, Box Prompting and Grounding-DINO-style Auto Label.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Ultralytics</div><div>YOLO/SAM smart annotation, including pretrained or own fine-tuned YOLO models.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Labelbox</div><div>Model-assisted labelling via Foundry/LLM configuration and imported predictions.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Encord</div><div>Strong AI-assisted HITL workflows, SAM 2 support and custom model integration.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>V7 Darwin</div><div>Auto-Annotate, Auto-Track, SAM and trained-model assisted labelling.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Supervisely</div><div>Smart tools, SAM2/ClickSEG-style assistance, built-in models and custom model integration.</div></div>
+        </div>
+      </article>
+
+      <article class="metric-block">
+        <div class="metric-head">
+          <div class="metric-name">Dataset / export fit</div>
+          <div class="metric-why">Captures whether labels can move cleanly into YOLO training and whether dataset versions are reproducible.</div>
+        </div>
+        <div class="tool-grid">
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>CVAT</div><div>Strong export support including YOLO, COCO, Pascal VOC, KITTI, Cityscapes and 20+ formats.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Label Studio</div><div>Strong API/SDK flexibility; export/versioning depends on project configuration.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Roboflow</div><div>Very strong CV dataset upload, management, versioning, analysis and download.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Ultralytics</div><div>Native YOLO dataset structure and numbered NDJSON snapshots for reproducible training.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Labelbox</div><div>Strong import/export, schemas, catalogue and API workflows for enterprise pipelines.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Encord</div><div>Strong data lineage, cloud storage, APIs and multimodal data management.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>V7 Darwin</div><div>Strong imports/exports through Darwin CLI/SDK and documented CV export formats.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Supervisely</div><div>Strong format coverage, dataset curation, cloud/local storage and API/SDK automation.</div></div>
+        </div>
+      </article>
+
+      <article class="metric-block">
+        <div class="metric-head">
+          <div class="metric-name">Collaboration and QA</div>
+          <div class="metric-why">Indicates whether the tool can support assignment, review and quality control rather than single-user drawing only.</div>
+        </div>
+        <div class="tool-grid">
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>CVAT</div><div>Projects/tasks/jobs, roles, audit trails, reports, validation and review workflows.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Label Studio</div><div>Collaborative labelling and review possible; deeper QA is stronger in enterprise setups.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Roboflow</div><div>Jobs, assignment, instructions, comments, review mode, approval/rejection and label insights.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Ultralytics</div><div>Useful visual controls and class counts, but less mature as workforce QA tooling.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Labelbox</div><div>Very strong workflows, issues, comments, benchmarks, consensus and dashboards.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Encord</div><div>Role-based workflows, assignment, analytics, custom review and HITL quality controls.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>V7 Darwin</div><div>Review, consensus, workflow automation, comments and external validation via webhooks.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Supervisely</div><div>Review tools, QA statistics, heatmaps, class co-occurrence and balance analytics.</div></div>
+        </div>
+      </article>
+
+      <article class="metric-block">
+        <div class="metric-head">
+          <div class="metric-name">Main limitation</div>
+          <div class="metric-why">Identifies why an off-the-shelf tool alone may not satisfy the full UAVape DCE requirements.</div>
+        </div>
+        <div class="tool-grid">
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>CVAT</div><div>Powerful but generic; candidate review, scrape/synthetic provenance and metadata need customisation.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Label Studio</div><div>Flexible but configuration-heavy; not optimised only for YOLO-style small-object CV.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Roboflow</div><div>Productive but SaaS/platform-dependent; custom metadata and research control may be constrained.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Ultralytics</div><div>Excellent YOLO loop but narrower than a broader bespoke curation engine.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Labelbox</div><div>Enterprise-first cost/complexity may exceed a small academic dataset engine.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>Encord</div><div>Enterprise-first; strong but potentially heavyweight for dissertation-scale pipeline.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker medium"></span>V7 Darwin</div><div>Strong platform, but less transparent/custom than building a domain-specific DCE.</div></div>
+          <div class="tool-cell"><div class="tool-name"><span class="marker high"></span>Supervisely</div><div>Broad and powerful but complex; custom DCE may be simpler for targeted vape-litter workflow.</div></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="sources" aria-label="Sources used">
+      <p><strong>Sources:</strong> CVAT official platform page; Label Studio official platform page; Roboflow Annotate, AI Labeling, collaboration and dataset download docs; Ultralytics Platform and annotation docs.</p>
+      <p>Also used: Labelbox Annotate overview, Encord Annotate platform page, V7 Darwin annotation and Auto-Annotate docs, and Supervisely platform documentation/features.</p>
+    </section>
+  </main>
+</body>
+</html>

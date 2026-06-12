@@ -1,0 +1,9 @@
+category,false_negatives,false_positives
+Small object scale,34,2
+Partial occlusion,23,1
+Cluttered background,20,4
+Low-contrast surface,17,5
+Mixed pavement /debris,10,7
+Glare or blur,9,2
+Confuser object present,0,18
+Cylindrical / bright litter,0,13

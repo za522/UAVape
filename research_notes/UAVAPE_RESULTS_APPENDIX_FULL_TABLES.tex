@@ -1,0 +1,199 @@
+\section{UAVape Detector Results Appendix}
+\label{app:uavape_results_full_tables}
+
+This appendix contains the full supporting tables for the UAVape detector-selection, tiling and data-source ablation results. The main results section reports the same evidence in a compressed form.
+
+\subsection{Full Aggregate Detector-Selection Ranking}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{r l r r r r r}
+\toprule
+\textbf{Rank} & \textbf{Run} & \textbf{Best epoch} & \textbf{Precision} & \textbf{Recall} & \textbf{mAP50} & \textbf{mAP50--95} \\
+\midrule
+1 & YOLO26s @ 1280 & 77 & 0.83866 & 0.74882 & 0.80233 & 0.60501 \\
+2 & YOLO11s @ 1280 & 74 & 0.83625 & 0.75079 & 0.78559 & 0.58851 \\
+3 & YOLO11s @ 960 & 89 & 0.82587 & 0.74317 & 0.77487 & 0.56639 \\
+4 & YOLO26m @ 640 & 82 & 0.77691 & 0.75584 & 0.79481 & 0.56215 \\
+5 & YOLO26s @ 960 & 90 & 0.82190 & 0.68432 & 0.74253 & 0.54957 \\
+6 & YOLO11n @ 960 & 90 & 0.84300 & 0.67100 & 0.76500 & 0.54500 \\
+7 & YOLOv8s @ 1280 & 76 & 0.85542 & 0.66381 & 0.73735 & 0.54448 \\
+8 & YOLO26s @ 640 & 71 & 0.82493 & 0.66468 & 0.76095 & 0.54024 \\
+9 & YOLOv8s @ 960 & 89 & 0.82325 & 0.67099 & 0.73797 & 0.53573 \\
+10 & YOLOv8m @ 640 & 88 & 0.78257 & 0.71402 & 0.75316 & 0.53368 \\
+11 & YOLO26n @ 960 & 78 & 0.77300 & 0.68400 & 0.72900 & 0.52700 \\
+12 & YOLO11m @ 640 & 81 & 0.86303 & 0.68856 & 0.75816 & 0.52415 \\
+13 & YOLO11s @ 640 & 87 & 0.79727 & 0.69695 & 0.74736 & 0.50696 \\
+14 & YOLOv8s @ 640 & 69 & 0.77860 & 0.68419 & 0.71935 & 0.48731 \\
+15 & YOLO26n @ 640 & 74 & 0.74700 & 0.64300 & 0.68700 & 0.45900 \\
+16 & YOLO11n @ 640 & 89 & 0.69900 & 0.68100 & 0.68800 & 0.45600 \\
+\bottomrule
+\end{tabular}}
+\caption{Full aggregate validation ranking for the unified detector-selection benchmark.}
+\label{tab:appendix_uavape_aggregate_validation}
+\end{table}
+
+\subsection{Full Vape-Class Detector-Selection Ranking}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{r l r r r r}
+\toprule
+\textbf{Rank} & \textbf{Run} & \textbf{Vape precision} & \textbf{Vape recall} & \textbf{Vape AP50} & \textbf{Vape AP50--95} \\
+\midrule
+1 & YOLO26s @ 1280 & 0.90879 & 0.83851 & 0.91763 & 0.70669 \\
+2 & YOLO26s @ 960 & 0.89150 & 0.77282 & 0.85692 & 0.68355 \\
+3 & YOLO11s @ 1280 & 0.87633 & 0.84194 & 0.87978 & 0.67722 \\
+4 & YOLO11s @ 960 & 0.88042 & 0.83833 & 0.90301 & 0.67675 \\
+5 & YOLO26m @ 640 & 0.84197 & 0.84402 & 0.88876 & 0.66603 \\
+6 & YOLOv8s @ 960 & 0.87992 & 0.80198 & 0.86633 & 0.65877 \\
+7 & YOLOv8m @ 640 & 0.87599 & 0.80429 & 0.87318 & 0.64843 \\
+8 & YOLO11m @ 640 & 0.87763 & 0.78218 & 0.88178 & 0.64840 \\
+9 & YOLO26s @ 640 & 0.88375 & 0.73762 & 0.87651 & 0.64776 \\
+10 & YOLO11n @ 960 & 0.87800 & 0.76200 & 0.87800 & 0.64500 \\
+11 & YOLO11s @ 640 & 0.91750 & 0.79208 & 0.89317 & 0.63779 \\
+12 & YOLO26n @ 960 & 0.82900 & 0.72800 & 0.83500 & 0.63300 \\
+13 & YOLOv8s @ 1280 & 0.83696 & 0.73762 & 0.80318 & 0.61764 \\
+14 & YOLO26n @ 640 & 0.84400 & 0.72800 & 0.82900 & 0.59800 \\
+15 & YOLOv8s @ 640 & 0.85827 & 0.78218 & 0.83862 & 0.59569 \\
+16 & YOLO11n @ 640 & 0.78000 & 0.80200 & 0.85300 & 0.58700 \\
+\bottomrule
+\end{tabular}}
+\caption{Full vape-class validation ranking for the unified detector-selection benchmark.}
+\label{tab:appendix_uavape_vape_validation}
+\end{table}
+
+\subsection{Nano Lower-Bound Results}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l r l l r r r r r r r r}
+\toprule
+\textbf{Run} & \textbf{Best epoch} & \textbf{Params / GFLOPs} & \textbf{Best weight size} & \textbf{Precision} & \textbf{Recall} & \textbf{mAP50} & \textbf{mAP50--95} & \textbf{Vape AP50} & \textbf{Vape AP50--95} & \textbf{Lighter AP50} & \textbf{Lighter AP50--95} \\
+\midrule
+YOLO26n @ 640 & 74 & 2.38M / 5.2 & 5.4 MB & 0.747 & 0.643 & 0.687 & 0.459 & 0.829 & 0.598 & 0.545 & 0.320 \\
+YOLO26n @ 960 & 78 & 2.38M / 5.2 & 5.4 MB & 0.773 & 0.684 & 0.729 & 0.527 & 0.835 & 0.633 & 0.623 & 0.422 \\
+YOLO11n @ 640 & 89 & 2.58M / 6.3 & 5.5 MB & 0.699 & 0.681 & 0.688 & 0.456 & 0.853 & 0.587 & 0.522 & 0.325 \\
+YOLO11n @ 960 & 90 & 2.58M / 6.3 & 5.5 MB & 0.843 & 0.671 & 0.765 & 0.545 & 0.878 & 0.645 & 0.653 & 0.445 \\
+\bottomrule
+\end{tabular}}
+\caption{Nano lower-bound validation results.}
+\label{tab:appendix_uavape_nano}
+\end{table}
+
+\subsection{Lighter-Class Diagnostics}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{l r r X}
+\toprule
+\textbf{Run} & \textbf{Lighter AP50} & \textbf{Lighter AP50--95} & \textbf{Interpretation} \\
+\midrule
+YOLO11s @ 1280 & 0.69071 & 0.50832 & Strongest lighter validation localisation result. \\
+YOLO26s @ 1280 & 0.68792 & 0.49768 & Selected protocol; strongest vape result and close lighter diagnostic performance. \\
+YOLO26m @ 640 & 0.70601 & 0.45521 & Strong lighter AP50, but weaker strict localisation than 1280 small models. \\
+YOLO11n @ 960 & 0.65300 & 0.44500 & Best nano lighter diagnostic result. \\
+\bottomrule
+\end{tabularx}
+\caption{Selected lighter-class validation diagnostics.}
+\label{tab:appendix_uavape_lighter_diagnostic}
+\end{table}
+
+\subsection{Full SAHI Tiling Validation Branch}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l r r r r r r r}
+\toprule
+\textbf{Run} & \textbf{Predictions} & \textbf{All AP50} & \textbf{All AP50--95} & \textbf{Vape AP50} & \textbf{Vape AP50--95} & \textbf{Lighter AP50} & \textbf{Lighter AP50--95} \\
+\midrule
+YOLO26s @ 640 + SAHI 1280/20\% & 9131 & 0.63982 & 0.48436 & 0.72741 & 0.55774 & 0.55223 & 0.41098 \\
+YOLO26s @ 960 + SAHI 1280/20\% & 7568 & 0.69592 & 0.51027 & 0.80554 & 0.60559 & 0.58631 & 0.41494 \\
+YOLO11s @ 960 + SAHI 1280/20\% & 10449 & 0.68078 & 0.51124 & 0.76595 & 0.58479 & 0.59561 & 0.43769 \\
+YOLO11n @ 960 + SAHI 1280/20\% & 14250 & 0.67804 & 0.50773 & 0.75871 & 0.56937 & 0.59736 & 0.44609 \\
+\bottomrule
+\end{tabular}}
+\caption{Full SAHI-style tiled inference validation results.}
+\label{tab:appendix_uavape_sahi}
+\end{table}
+
+\subsection{Data-Source Ablation Recipes}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l l r r r r}
+\toprule
+\textbf{Run} & \textbf{Training recipe} & \textbf{Train images} & \textbf{Train boxes} & \textbf{Vape boxes} & \textbf{Lighter boxes} \\
+\midrule
+\texttt{A0\_real\_only} & V4 real train only & 837 & 1317 & 870 & 447 \\
+\texttt{S88\_scraped} & V4 real + 88 scraped vape images & 925 & 1440 & 993 & 447 \\
+\texttt{S177\_scraped} & V4 real + 177 scraped vape images & 1014 & 1579 & 1132 & 447 \\
+\texttt{S355\_scraped} & V4 real + 355 scraped vape images & 1192 & 1864 & 1417 & 447 \\
+\texttt{Y88\_synthetic} & V4 real + 88 synthetic vape images & 925 & 1405 & 958 & 447 \\
+\texttt{Y177\_synthetic} & V4 real + 177 synthetic vape images & 1014 & 1494 & 1047 & 447 \\
+\texttt{Y355\_synthetic} & V4 real + 355 synthetic vape images & 1192 & 1672 & 1225 & 447 \\
+\texttt{S355\_Y355\_combined} & V4 real + 355 scraped + 355 synthetic vape images & 1547 & 2219 & 1772 & 447 \\
+\bottomrule
+\end{tabular}}
+\caption{Training recipes used in the V4 data-source ablation.}
+\label{tab:appendix_uavape_ablation_recipes}
+\end{table}
+
+\subsection{Full Data-Source Ablation Validation Results}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l r r r r r r r r r r r r}
+\toprule
+\textbf{Run} & \textbf{All P} & \textbf{All R} & \textbf{All AP50} & \textbf{All AP50--95} & \textbf{Vape P} & \textbf{Vape R} & \textbf{Vape AP50} & \textbf{Vape AP50--95} & \textbf{Lighter P} & \textbf{Lighter R} & \textbf{Lighter AP50} & \textbf{Lighter AP50--95} \\
+\midrule
+\texttt{A0\_real\_only} & 0.839 & 0.749 & 0.802 & 0.605 & 0.909 & 0.839 & 0.918 & 0.707 & 0.770 & 0.660 & 0.688 & 0.498 \\
+\texttt{S88\_scraped} & 0.860 & 0.739 & 0.774 & 0.601 & 0.907 & 0.797 & 0.874 & 0.696 & 0.812 & 0.680 & 0.675 & 0.506 \\
+\texttt{S177\_scraped} & 0.861 & 0.746 & 0.799 & 0.619 & 0.897 & 0.821 & 0.899 & 0.720 & 0.825 & 0.670 & 0.699 & 0.519 \\
+\texttt{S355\_scraped} & 0.833 & 0.709 & 0.777 & 0.611 & 0.910 & 0.797 & 0.891 & 0.718 & 0.756 & 0.621 & 0.663 & 0.505 \\
+\texttt{Y88\_synthetic} & 0.874 & 0.721 & 0.803 & 0.617 & 0.925 & 0.792 & 0.912 & 0.712 & 0.823 & 0.649 & 0.694 & 0.522 \\
+\texttt{Y177\_synthetic} & 0.867 & 0.716 & 0.792 & 0.598 & 0.897 & 0.822 & 0.903 & 0.692 & 0.838 & 0.610 & 0.681 & 0.504 \\
+\texttt{Y355\_synthetic} & 0.797 & 0.747 & 0.793 & 0.616 & 0.888 & 0.824 & 0.898 & 0.716 & 0.706 & 0.670 & 0.687 & 0.516 \\
+\texttt{S355\_Y355\_combined} & 0.833 & 0.774 & 0.815 & 0.639 & 0.905 & 0.853 & 0.922 & 0.737 & 0.760 & 0.695 & 0.708 & 0.541 \\
+\bottomrule
+\end{tabular}}
+\caption{Full validation results from the V4 data-source ablation.}
+\label{tab:appendix_uavape_ablation_full_validation}
+\end{table}
+
+\subsection{Archived Graphical Evidence}
+
+The recovered result archives also contain training curves, PR/F1 curves, confusion matrices and batch prediction previews. The most useful graphical evidence to include, if space allows, is:
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{p{0.28\textwidth} X}
+\toprule
+\textbf{Artifact} & \textbf{Recovered archive path} \\
+\midrule
+Detector-selection training curves & \texttt{runs/v4\_yolo26s\_img1280/results.png} \\
+Detector-selection confusion matrix & \texttt{runs/v4\_yolo26s\_img1280/confusion\_matrix\_normalized.png} \\
+Selected data-ablation training curves & \texttt{runs\_data\_ablation/v4\_ablate\_S355\_Y355\_combined/results.png} \\
+Selected data-ablation confusion matrix & \texttt{runs\_data\_ablation/v4\_ablate\_S355\_Y355\_combined/confusion\_matrix\_normalized.png} \\
+Final sealed-test PR curve & \texttt{final\_test/v4\_ablate\_S355\_Y355\_combined\_test/BoxPR\_curve.png} \\
+Final sealed-test confusion matrix & \texttt{final\_test/v4\_ablate\_S355\_Y355\_combined\_test/confusion\_matrix\_normalized.png} \\
+Final sealed-test prediction previews & \texttt{final\_test/v4\_ablate\_S355\_Y355\_combined\_test/val\_batch*\_pred.jpg} \\
+\bottomrule
+\end{tabularx}
+\caption{Recovered graphical evidence recommended for optional appendix inclusion.}
+\label{tab:appendix_uavape_graphical_evidence}
+\end{table}

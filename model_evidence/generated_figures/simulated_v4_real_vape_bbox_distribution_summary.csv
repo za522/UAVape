@@ -1,0 +1,2 @@
+source,n_boxes,median_area_pct,mean_area_pct,p10_area_pct,p90_area_pct,median_width_pct,median_height_pct
+simulated_v4_real_vape_bbox_count,1328,0.327323,1.009539,0.106170,2.533811,8.017221,5.054793

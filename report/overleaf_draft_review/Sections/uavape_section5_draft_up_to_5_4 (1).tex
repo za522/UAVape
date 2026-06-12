@@ -1,0 +1,5 @@
+\section*{5 Methodology and System Development}
+
+This methodology treats disposable vape detection as a dataset engineering problem, not only a model selection problem. Existing UAV-litter datasets do not isolate disposable vapes as hazardous micro-WEEE. They also do not provide the metadata needed to explain why a model fails under specific outdoor conditions. Because of this, UAVape was designed as both a dataset and a test case for a wider Dataset Construction Engine.
+
+The aim was to control the main failure modes that affect UAV-oriented vape detection. These include high variation within the vape class, visual similarity between vapes and other litter, small object scale, clutter, occlusion, background texture bias, and data leakage between training and testing. Each data source, capture variable, annotation format, metadata field, and evaluation split was chosen to address one of these problems.

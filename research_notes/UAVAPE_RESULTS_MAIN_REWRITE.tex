@@ -1,0 +1,134 @@
+\subsection{UAVape Dataset and Detection Model Results}
+
+This section reports the UAVape detector results in the order used by the experimental protocol: validation-based detector selection, tiled-inference testing, data-source ablation and final sealed-test evaluation. Validation results are used to explain model and recipe selection; the sealed test split is used only for the final generalisation result.
+
+\subsubsection{Detector-Selection Validation Benchmark}
+
+The detector-selection benchmark compared YOLO26, YOLO11 and YOLOv8 families across model scale and input resolution. Table~\ref{tab:uavape_results_detector_selection_main} reports the full 16-run validation benchmark using both aggregate two-class metrics and vape-specific metrics. Aggregate mAP is retained for transparency, but vape AP is the target-class metric because disposable vapes are the primary research object and lighters are an auxiliary confuser class.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{r l r r r r r}
+\toprule
+\textbf{Rank} & \textbf{Run} & \textbf{Best epoch} & \textbf{All mAP@50} & \textbf{All mAP@50--95} & \textbf{Vape AP50} & \textbf{Vape AP50--95} \\
+\midrule
+\textbf{1} & \textbf{YOLO26s @ 1280} & \textbf{77} & \textbf{0.80233} & \textbf{0.60501} & \textbf{0.91763} & \textbf{0.70669} \\
+2 & YOLO11s @ 1280 & 74 & 0.78559 & 0.58851 & 0.87978 & 0.67722 \\
+\textbf{3} & \textbf{YOLO11s @ 960} & \textbf{89} & \textbf{0.77487} & \textbf{0.56639} & \textbf{0.90301} & \textbf{0.67675} \\
+\textbf{4} & \textbf{YOLO26m @ 640} & \textbf{82} & \textbf{0.79481} & \textbf{0.56215} & \textbf{0.88876} & \textbf{0.66603} \\
+5 & YOLO26s @ 960 & 90 & 0.74253 & 0.54957 & 0.85692 & 0.68355 \\
+6 & YOLO11n @ 960 & 90 & 0.76500 & 0.54500 & 0.87800 & 0.64500 \\
+7 & YOLOv8s @ 1280 & 76 & 0.73735 & 0.54448 & 0.80318 & 0.61764 \\
+8 & YOLO26s @ 640 & 71 & 0.76095 & 0.54024 & 0.87651 & 0.64776 \\
+9 & YOLOv8s @ 960 & 89 & 0.73797 & 0.53573 & 0.86633 & 0.65877 \\
+10 & YOLOv8m @ 640 & 88 & 0.75316 & 0.53368 & 0.87318 & 0.64843 \\
+11 & YOLO26n @ 960 & 78 & 0.72900 & 0.52700 & 0.83500 & 0.63300 \\
+12 & YOLO11m @ 640 & 81 & 0.75816 & 0.52415 & 0.88178 & 0.64840 \\
+13 & YOLO11s @ 640 & 87 & 0.74736 & 0.50696 & 0.89317 & 0.63779 \\
+14 & YOLOv8s @ 640 & 69 & 0.71935 & 0.48731 & 0.83862 & 0.59569 \\
+15 & YOLO26n @ 640 & 74 & 0.68700 & 0.45900 & 0.82900 & 0.59800 \\
+16 & YOLO11n @ 640 & 89 & 0.68800 & 0.45600 & 0.85300 & 0.58700 \\
+\bottomrule
+\end{tabular}}
+\caption{Full detector-selection validation benchmark. Bold rows indicate the selected 1280-pixel protocol and the strongest lower-resolution comparator rows used to interpret deployment trade-offs.}
+\label{tab:uavape_results_detector_selection_main}
+\end{table}
+
+The benchmark selected YOLO26s at 1280 pixels because it led both the aggregate ranking and the vape-class ranking. However, the lower-resolution results were still promising: YOLO26m at 640 reached vape AP50 of 0.889 and vape AP50--95 of 0.666, while YOLO11s at 960 reached vape AP50 of 0.903 and aggregate mAP@50--95 of 0.566. This means that the final 1280-pixel model should be read as the strongest accuracy protocol, while 640- and 960-pixel variants remain plausible candidates for future edge-hardware testing.
+
+\subsubsection{SAHI Tiling Validation Branch}
+
+Because the strongest validation protocol used 1280-pixel full-frame inference, SAHI-style tiled inference was tested as a validation-only branch. Table~\ref{tab:uavape_results_sahi_main} compares the selected full-frame protocol with the strongest tiled result. The full SAHI table is retained in Appendix~\ref{app:uavape_results_full_tables}.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l r r r r r}
+\toprule
+\textbf{Protocol} & \textbf{Predictions} & \textbf{All AP50} & \textbf{All AP50--95} & \textbf{Vape AP50} & \textbf{Vape AP50--95} \\
+\midrule
+YOLO26s @ 1280 full-frame & -- & 0.80233 & 0.60501 & 0.91763 & 0.70669 \\
+YOLO26s @ 960 + SAHI 1280/20\% & 7568 & 0.69592 & 0.51027 & 0.80554 & 0.60559 \\
+\bottomrule
+\end{tabular}}
+\caption{Comparison between the selected full-frame validation protocol and the strongest tested SAHI branch.}
+\label{tab:uavape_results_sahi_main}
+\end{table}
+
+The tiled branch was therefore not selected. Although tiling can preserve local small-object detail, the tested setup underperformed full-frame high-resolution inference and produced a high number of predictions relative to the 302 effective validation instances, suggesting duplicate or false-positive pressure.
+
+\subsubsection{Data-Source Ablation}
+
+After YOLO26s at 1280 was selected as the detector protocol, the data-source ablation tested whether source-controlled scraped and synthetic vape imagery improved validation performance. Table~\ref{tab:uavape_results_ablation_main} combines the training recipe and key validation metrics so the effect of each source addition can be read directly.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l l r r r r r}
+\toprule
+\textbf{Run} & \textbf{Training recipe} & \textbf{Train images} & \textbf{All AP50} & \textbf{All AP50--95} & \textbf{Vape AP50} & \textbf{Vape AP50--95} \\
+\midrule
+\texttt{A0\_real\_only} & V4 real train only & 837 & 0.802 & 0.605 & 0.918 & 0.707 \\
+\texttt{S88\_scraped} & V4 real + 88 scraped & 925 & 0.774 & 0.601 & 0.874 & 0.696 \\
+\texttt{S177\_scraped} & V4 real + 177 scraped & 1014 & 0.799 & 0.619 & 0.899 & 0.720 \\
+\texttt{S355\_scraped} & V4 real + 355 scraped & 1192 & 0.777 & 0.611 & 0.891 & 0.718 \\
+\texttt{Y88\_synthetic} & V4 real + 88 synthetic & 925 & 0.803 & 0.617 & 0.912 & 0.712 \\
+\texttt{Y177\_synthetic} & V4 real + 177 synthetic & 1014 & 0.792 & 0.598 & 0.903 & 0.692 \\
+\texttt{Y355\_synthetic} & V4 real + 355 synthetic & 1192 & 0.793 & 0.616 & 0.898 & 0.716 \\
+\texttt{S355\_Y355\_combined} & V4 real + 355 scraped + 355 synthetic & 1547 & 0.815 & 0.639 & 0.922 & 0.737 \\
+\bottomrule
+\end{tabular}}
+\caption{Validation results from the V4 data-source ablation under the fixed YOLO26s@1280 protocol.}
+\label{tab:uavape_results_ablation_main}
+\end{table}
+
+The combined scraped-plus-synthetic recipe produced the strongest validation result, improving vape AP50 from 0.918 to 0.922 and vape AP50--95 from 0.707 to 0.737 relative to the real-only baseline. The scraped-only and synthetic-only branches were mixed and non-monotonic, so the result supports a source-mixture conclusion rather than a simple ``more data is always better'' conclusion.
+
+\subsubsection{Final Sealed Test Result}
+
+After validation-based selection, the \texttt{S355\_Y355\_combined} \texttt{best.pt} checkpoint was evaluated once on the sealed real-image test split. Table~\ref{tab:uavape_results_final_test_main} reports the selected validation result and the final held-out test result.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l r r r r r r r r r r}
+\toprule
+\textbf{Split} & \textbf{Images} & \textbf{Instances} & \textbf{All P} & \textbf{All R} & \textbf{All AP50} & \textbf{All AP50--95} & \textbf{Vape AP50} & \textbf{Vape AP50--95} & \textbf{Lighter AP50} & \textbf{Lighter AP50--95} \\
+\midrule
+Validation & 183 & 302 & 0.833 & 0.774 & 0.815 & 0.639 & 0.922 & 0.737 & 0.708 & 0.541 \\
+Test & 184 & 420 & 0.849 & 0.725 & 0.851 & 0.638 & 0.882 & 0.685 & 0.819 & 0.591 \\
+\bottomrule
+\end{tabular}}
+\caption{Validation and sealed test results for the selected \texttt{S355\_Y355\_combined} recipe.}
+\label{tab:uavape_results_final_test_main}
+\end{table}
+
+On the sealed test split, the selected detector achieved all-class mAP@50 of 0.851 and mAP@50--95 of 0.638. The target vape class reached AP50 of 0.882 and AP50--95 of 0.685. The validation vape AP50 of 0.922 should therefore be interpreted as selection evidence, while the test vape AP50 of 0.882 is the final held-out generalisation score.
+
+\subsubsection{Selected Detector Properties}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{p{0.30\textwidth} X}
+\toprule
+\textbf{Property} & \textbf{Selected detector value} \\
+\midrule
+Detector checkpoint & YOLO26s \texttt{best.pt} from the \texttt{S355\_Y355\_combined} run \\
+Input size & 1280 pixels, full-frame inference \\
+Parameter count & 9,465,954 parameters \\
+Compute estimate & 20.5 GFLOPs \\
+Final-test runtime environment & RunPod H100 NVL, Ultralytics 8.4.62 \\
+Server-GPU inference timing & 4.0 ms preprocessing, 2.9 ms inference and 0.1 ms postprocessing per image \\
+\bottomrule
+\end{tabularx}
+\caption{Deployment-relevant properties recorded for the selected detector. Server-GPU timing is reported for transparency but does not represent UAV edge-hardware performance.}
+\label{tab:uavape_results_selected_detector_deployment_properties_main}
+\end{table}
+
+These properties clarify the deployment trade-off. The final detector is small in parameter count, but the selected 1280-pixel input size increases compute relative to lower-resolution inference. Edge deployment should therefore be treated as a separate optimisation and benchmarking step.

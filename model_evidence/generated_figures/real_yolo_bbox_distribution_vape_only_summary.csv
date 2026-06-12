@@ -1,0 +1,2 @@
+label,labels_scanned,boxes,median_area_pct,mean_area_pct,p10_area_pct,p90_area_pct,median_width_pct,median_height_pct
+Extracted real YOLO pools vape only,645,644,0.736320,2.142166,0.146487,5.963893,8.281200,9.375000
